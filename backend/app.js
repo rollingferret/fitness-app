@@ -8,6 +8,8 @@ const csurf = require('csurf');
 const { isProduction } = require('./config/keys');
 const csrfRouter = require('./routes/api/csrf');
 
+require('./models/User');
+
 const usersRouter = require('./routes/api/users'); // update the import file path
 
 const app = express();
