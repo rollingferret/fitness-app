@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const debug = require('debug');
+app.use(passport.initialize());
 
 const cors = require('cors');
 const csurf = require('csurf');
@@ -9,6 +10,8 @@ const { isProduction } = require('./config/keys');
 const csrfRouter = require('./routes/api/csrf');
 
 require('./models/User');
+require('./config/passport');
+const passport = require('passport');
 
 const usersRouter = require('./routes/api/users'); // update the import file path
 
