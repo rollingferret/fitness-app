@@ -34,8 +34,8 @@ function NavBar () {
 
   return (
     <>
-      <h1>Fitness App</h1>
-      { getLinks() }
+      <h1 style={{ color: 'blue', textAlign: 'center' }}>Fitness App</h1>
+      {getLinks()}
     </>
   );
 }

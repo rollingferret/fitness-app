@@ -1,0 +1,14 @@
+/* NavBar.css (or add these styles wherever appropriate) */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: lightblue; /* Change the background color to blue */
+  }
+
+  h1 {
+    color: navy; /* Change the text color to a dark blue */
+    text-align: center;
+  }
