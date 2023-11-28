@@ -141,7 +141,6 @@ export const deleteRun = runId => async dispatch => {
     const res = await jwtFetch(`/api/runs/${runId}`, {
       method: 'DELETE'
     });
-
     console.log(res)
 
     if (res.ok) {
