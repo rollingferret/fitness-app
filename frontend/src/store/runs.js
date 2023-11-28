@@ -96,14 +96,21 @@ export const UPDATE_RUN_SUCCESS = 'UPDATE_RUN_SUCCESS';
 export const UPDATE_RUN_FAILURE = 'UPDATE_RUN_FAILURE';
 
 export const updateRun = (runId, updatedRunData) => async dispatch => {
+  // const csrfToken = document.cookie.split(';')
+  //                         .find(cookie => cookie.trim().startsWith('CSRF-TOKEN='))
+  //                         ?.split('=')[1];
+
   try {
-    const res = await fetch(`/api/runs/${runId}`, {
+    const res = await jwtFetch(`/api/runs/${runId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
+        // 'X-CSRF-Token': csrfToken, 
       },
-      body: JSON.stringify(updatedRunData),
+      body: JSON.stringify(updatedRunData)
     });
+
+    console.log(updatedRunData)
 
     if (res.ok) {
       const run = await res.json();
@@ -134,6 +141,8 @@ export const deleteRun = runId => async dispatch => {
     const res = await jwtFetch(`/api/runs/${runId}`, {
       method: 'DELETE'
     });
+
+    console.log(res)
 
     if (res.ok) {
       dispatch({
@@ -181,26 +190,12 @@ const runsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
       case RECEIVE_USER_LOGOUT:
         return { ...state, user: {}, new: undefined }
         case UPDATE_RUN_SUCCESS:
-          return {
-            ...state,
-            all: {
-              ...state.all,
-              [action.payload._id]: action.payload,
-            },
+          return {...state, all: {...state.all, [action.payload._id]: action.payload }
           };
         case UPDATE_RUN_FAILURE:
-          return {
-            ...state,
-            errors: action.payload,
-          };
+          return {...state, errors: action.payload};
         case FETCH_RUN_SUCCESS:
-            return {
-              ...state,
-              all: {
-                ...state.all,
-                [action.payload._id]: action.payload,
-              },
-            };
+            return {...state, all: {...state.all, [action.payload._id]: action.payload}};
           case DELETE_RUN_SUCCESS:
               const newState = { ...state };
               delete newState.all[action.payload];
