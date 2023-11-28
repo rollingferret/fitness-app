@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import './SessionForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
 import './SignupForm.css'
+import { closeModal } from "../../store/ui";
 
 function SignupForm () {
   const [email, setEmail] = useState('');
@@ -49,7 +50,7 @@ function SignupForm () {
       username,
       password
     };
-
+    dispatch(closeModal())
     dispatch(signup(user));
   }
 

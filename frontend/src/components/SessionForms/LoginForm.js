@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { login, clearSessionErrors } from '../../store/session';
 import './LoginForm.css';
+import { closeModal } from "../../store/ui";
 
 function LoginForm () {
   const [email, setEmail] = useState('');
@@ -25,13 +26,13 @@ function LoginForm () {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(closeModal())
     dispatch(login({ email, password }));
   }
 
   return (
     <>
       { (modal === "login") && // Naoko added 
-      // <div className='login-modal-body' >
         <form className="modal-body session-form" onSubmit={handleSubmit}>
           <h2>Log In Form</h2>
           <div className="errors">{errors?.email}</div>
@@ -58,7 +59,6 @@ function LoginForm () {
             disabled={!email || !password}
           />
         </form>
-      // </div>
       } 
     </>
   )
