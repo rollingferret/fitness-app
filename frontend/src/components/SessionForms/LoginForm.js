@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import './SessionForm.css';
 
 import { login, clearSessionErrors } from '../../store/session';
+import { closeModal } from "../../store/ui";
 import './LoginForm.css';
 
 function LoginForm () {
@@ -31,34 +32,34 @@ function LoginForm () {
   return (
     <>
       { (modal === "login") && // Naoko added 
-      // <div className='login-modal-body' >
-        <form className="modal-body session-form" onSubmit={handleSubmit}>
-          <h2>Log In Form</h2>
-          <div className="errors">{errors?.email}</div>
-          <label>
-            <span>Email</span>
-            <input type="text"
-              value={email}
-              onChange={update('email')}
-              placeholder="Email"
+        <div className="modal-body" onClick={() => dispatch(closeModal())}>
+          <form className="session-form" onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit}>
+            <h2>Log In Form</h2>
+            <div className="errors">{errors?.email}</div>
+            <label>
+              <span>Email</span>
+              <input type="text"
+                value={email}
+                onChange={update('email')}
+                placeholder="Email"
+              />
+            </label>
+            <div className="errors">{errors?.password}</div>
+            <label>
+              <span>Password</span>
+              <input type="password"
+                value={password}
+                onChange={update('password')}
+                placeholder="Password"
+              />
+            </label>
+            <input
+              type="submit"
+              value="Log In"
+              disabled={!email || !password}
             />
-          </label>
-          <div className="errors">{errors?.password}</div>
-          <label>
-            <span>Password</span>
-            <input type="password"
-              value={password}
-              onChange={update('password')}
-              placeholder="Password"
-            />
-          </label>
-          <input
-            type="submit"
-            value="Log In"
-            disabled={!email || !password}
-          />
-        </form>
-      // </div>
+          </form>
+        </div>
       } 
     </>
   )

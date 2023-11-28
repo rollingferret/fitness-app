@@ -9,3 +9,8 @@
     overflow: auto;
     z-index: 10;
   }
+
+  .session-form {
+    width: 300px;
+    height: 600px;
+  }
