@@ -7,8 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
-
-
+import RunUpdateForm from './components/Runs/RunUpdateForm';
 import Runs from './components/Runs/Runs';
 import Profile from './components/Profile/Profile';
 import RunCompose from './components/Runs/RunCompose';
@@ -31,10 +30,11 @@ function App() {
         <AuthRoute exact path="/" component={MainPage} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
-
         <ProtectedRoute exact path="/runs" component={Runs} />
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/runs/new" component={RunCompose} />
+        <ProtectedRoute exact path="/runs/update/:id" component={RunUpdateForm} />
+    
       </Switch>
     </>
   );
