@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import './SessionForm.css';
 
 import { login, clearSessionErrors } from '../../store/session';
+import './LoginForm.css';
 
 function LoginForm () {
   const [email, setEmail] = useState('');
@@ -30,9 +31,8 @@ function LoginForm () {
   return (
     <>
       { (modal === "login") && // Naoko added 
-        // <form className="session-form" onSubmit={handleSubmit}>
-        <form className="login-modal-body" onSubmit={handleSubmit}>
-          <div className='login-div'>
+      // <div className='login-modal-body' >
+        <form className="modal-body session-form" onSubmit={handleSubmit}>
           <h2>Log In Form</h2>
           <div className="errors">{errors?.email}</div>
           <label>
@@ -57,8 +57,8 @@ function LoginForm () {
             value="Log In"
             disabled={!email || !password}
           />
-          </div>
         </form>
+      // </div>
       } 
     </>
   )
