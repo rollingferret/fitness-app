@@ -93,12 +93,13 @@ router.delete('/:id', requireUser, async (req, res, next) => {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
-    await run.remove();
+    await Run.findByIdAndRemove(req.params.id); 
     return res.status(200).json({ message: "Run deleted successfully" });
   } catch (err) {
     next(err);
   }
 });
+
 
 router.post('/', requireUser, validateRunInput, async (req, res, next) => {
   try {
