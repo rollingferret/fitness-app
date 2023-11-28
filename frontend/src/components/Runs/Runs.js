@@ -15,12 +15,12 @@ function Runs () {
   if (runs.length === 0) return <div>There are no Runs</div>;
 
   return (
-    <>
-      <h2>All Runs</h2>
+    <div style={{ textAlign: 'center' }}>
+      <h2 style={{ textAlign: 'center' }}>All Runs</h2>
       {runs.map(run => (
         <RunBox key={run._id} run={run} />
       ))}
-    </>
+    </div>
   );
 }
 
