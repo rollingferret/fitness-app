@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserRuns, clearRunErrors } from '../../store/runs';
 import RunBox from '../Runs/RunBox';
+import './Profile.css';
 
 function Profile () {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Profile () {
   } else {
     return (
       <>
-        <h2>All of {currentUser.username}'s Runs</h2>
+        <h2 className="centered-heading">All of {currentUser.username}'s Runs</h2>
         {userRuns.map(run => (
           <RunBox
             key={run._id}
