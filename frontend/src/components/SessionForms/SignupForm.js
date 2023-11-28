@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signup, clearSessionErrors } from '../../store/session';
 import { closeModal } from "../../store/ui";
 import './SignupForm.css'
-import { closeModal } from "../../store/ui";
 
 function SignupForm () {
   const [email, setEmail] = useState('');
