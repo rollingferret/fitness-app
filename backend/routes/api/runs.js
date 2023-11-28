@@ -81,6 +81,24 @@ router.put('/:id', requireUser, validateRunInput, async (req, res, next) => {
   }
 });
 
+router.delete('/:id', requireUser, async (req, res, next) => {
+  try {
+    const run = await Run.findById(req.params.id);
+
+    if (!run) {
+      return res.status(404).json({ message: "Run not found" });
+    }
+
+    if (run.author.toString() !== req.user._id.toString()) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    await run.remove();
+    return res.status(200).json({ message: "Run deleted successfully" });
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.post('/', requireUser, validateRunInput, async (req, res, next) => {
   try {
