@@ -37,23 +37,23 @@ function LoginForm () {
           <form className="session-form" onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit}>
             <h2>Log In Form</h2>
             <div className="errors">{errors?.email}</div>
-            <label>
-              <span>Email</span>
+            {/* <label>
+              <span>Email</span> */}
               <input type="text"
                 value={email}
                 onChange={update('email')}
                 placeholder="Email"
               />
-            </label>
+            {/* </label> */}
             <div className="errors">{errors?.password}</div>
-            <label>
-              <span>Password</span>
+            {/* <label>
+              <span>Password</span> */}
               <input type="password"
                 value={password}
                 onChange={update('password')}
                 placeholder="Password"
               />
-            </label>
+            {/* </label> */}
             <input
               type="submit"
               value="Log In"
