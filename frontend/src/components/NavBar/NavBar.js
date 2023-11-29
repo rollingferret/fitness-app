@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import './NavBar.css';
-import { logout } from '../../store/session';
+import { logout, login } from '../../store/session';
 import { openModal, closeModal } from "../../store/ui";
 
 function NavBar () {
@@ -23,6 +23,11 @@ function NavBar () {
     e.preventDefault();
     e.stopPropagation()
     dispatch(openModal("signup"));
+  }
+
+  const handleDemoSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login({ email:"abc@abc.com", password:"password" }));
   }
 
   const getLinks = () => {
@@ -57,6 +62,15 @@ function NavBar () {
             >
             <div className=''  data-font-weight="semibold" >
               Sign Up
+            </div>
+          </button>
+          <button
+            className='' 
+            type="submit" 
+            onClick={handleDemoSubmit}
+          >
+            <div className=''  data-font-weight="semibold">
+              Demo Login
             </div>
           </button>
         </div>
