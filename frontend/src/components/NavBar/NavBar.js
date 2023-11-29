@@ -18,7 +18,7 @@ function NavBar () {
     e.stopPropagation()
     dispatch(openModal("login"));
   }
-  
+
   const openSignup = (e) => {
     e.preventDefault();
     e.stopPropagation()
@@ -35,7 +35,7 @@ function NavBar () {
       return (
         <div className="links-nav">
           <Link to={'/runs'}>All Exercises</Link>
-          <Link to={'/profile'}>Profile</Link>
+          <Link to={'/profile'}>All Runs</Link>
           <Link to={'/runs/new'}>Write a Run</Link>
           <Link to={'/user_profile'}>User Profile</Link>
           <button onClick={logoutUser}>Logout</button>
@@ -47,17 +47,17 @@ function NavBar () {
           {/* <Link to={'/signup'}>Signup</Link>
           <Link to={'/login'}>Login</Link> */}
           <button
-            className='' 
-            type="submit" 
+            className=''
+            type="submit"
             onClick={openLogin}
           >
             <div className=''  data-font-weight="semibold">
               Log In
             </div>
           </button>
-          <button 
-              className='' 
-              type="submit" 
+          <button
+              className=''
+              type="submit"
               onClick={openSignup}
             >
             <div className=''  data-font-weight="semibold" >
@@ -65,8 +65,8 @@ function NavBar () {
             </div>
           </button>
           <button
-            className='' 
-            type="submit" 
+            className=''
+            type="submit"
             onClick={handleDemoSubmit}
           >
             <div className=''  data-font-weight="semibold">
