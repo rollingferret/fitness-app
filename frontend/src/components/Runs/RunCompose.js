@@ -38,7 +38,6 @@ function RunCompose () {
         <input type="number" value={seconds} onChange={e => setSeconds(e.target.value)} placeholder="Seconds" required />
         <input type="submit" value="Submit" />
         <div className="errors">{errors?.text}</div>
-        <input type="submit" value="Submit" />
       </form>
       <div className="run-preview">
         <h3>Run Preview</h3>
