@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import { deleteRun } from '../../store/runs';
 
 function RunBox({ run }) {
-  const { text, author, _id: runId } = run;
+  const { distance, hours, minutes, seconds, author, _id: runId } = run;
+  // const { text, author,  } = run;
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -13,10 +14,14 @@ function RunBox({ run }) {
     dispatch(deleteRun(runId));
   };
 
+  const formatRunData = () => {
+    return `${distance} km, ${hours}h ${minutes}m ${seconds}s`;
+  };
+
   return (
     <div className="run">
       <h3>{author.username}</h3>
-      <p>{text}</p>
+      <p>{formatRunData()}</p>
       {currentUser && currentUser._id === author._id && (
         <>
           <Link to={`/runs/update/${runId}`}>Edit</Link>

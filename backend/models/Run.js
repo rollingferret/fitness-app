@@ -6,12 +6,25 @@ const runSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  text: {
-    type: String,
+  distance: {
+    type: Number,
+    required: true
+  },
+  hours: {
+    type: Number,
+    required: true
+  },
+  minutes: {
+    type: Number,
+    required: true
+  },
+  seconds: {
+    type: Number,
     required: true
   }
 }, {
   timestamps: true
 });
+
 
 module.exports = mongoose.model('Run', runSchema);

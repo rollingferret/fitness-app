@@ -5,7 +5,10 @@ import RunBox from './RunBox';
 import './RunCompose.css';
 
 function RunCompose () {
-  const [text, setText] = useState('');
+  const [distance, setDistance] = useState('');
+  const [hours, setHours] = useState('');
+  const [minutes, setMinutes] = useState('');
+  const [seconds, setSeconds] = useState('');
   const dispatch = useDispatch();
   const author = useSelector(state => state.session.user);
   const newRun = useSelector(state => state.runs.new);
@@ -17,28 +20,29 @@ function RunCompose () {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(composeRun({ text }));
-    setText('');
+    dispatch(composeRun({ distance, hours, minutes, seconds }));
+    setDistance('');
+    setHours('');
+    setMinutes('');
+    setSeconds('');
   };
 
-  const update = e => setText(e.currentTarget.value);
+  // const update = e => setText(e.currentTarget.value);
 
   return (
     <>
       <form className="compose-run" onSubmit={handleSubmit}>
-        <input
-          type="textarea"
-          value={text}
-          onChange={update}
-          placeholder="Write your run..."
-          required
-        />
+      <input type="number" value={distance} onChange={e => setDistance(e.target.value)} placeholder="Distance" required />
+        <input type="number" value={hours} onChange={e => setHours(e.target.value)} placeholder="Hours" required />
+        <input type="number" value={minutes} onChange={e => setMinutes(e.target.value)} placeholder="Minutes" required />
+        <input type="number" value={seconds} onChange={e => setSeconds(e.target.value)} placeholder="Seconds" required />
+        <input type="submit" value="Submit" />
         <div className="errors">{errors?.text}</div>
         <input type="submit" value="Submit" />
       </form>
       <div className="run-preview">
         <h3>Run Preview</h3>
-        {text ? <RunBox run={{text, author}} /> : undefined}
+        {/* {text ? <RunBox run={{text, author}} /> : undefined} */}
       </div>
       <div className="previous-run">
         <h3>Previous Run</h3>

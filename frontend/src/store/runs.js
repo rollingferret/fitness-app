@@ -79,7 +79,10 @@ export const fetchRun = runId => async dispatch => {
     try {
       const res = await jwtFetch('/api/runs/', {
         method: 'POST',
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
       const run = await res.json();
       dispatch(receiveNewRun(run));
@@ -162,7 +165,6 @@ export const deleteRun = runId => async dispatch => {
     });
   }
 };
-
 
 const nullErrors = null;
 

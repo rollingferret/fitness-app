@@ -57,24 +57,22 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', requireUser, validateRunInput, async (req, res, next) => {
   try {
     let run = await Run.findById(req.params.id);
-
     if (!run) {
-      const error = new Error('Run not found');
-      error.statusCode = 404;
-      error.errors = { message: "No run found with that id" };
-      return next(error);
+      return res.status(404).json({ message: "Run not found" });
     }
-
     if (run.author.toString() !== req.user._id.toString()) {
-      const error = new Error('Unauthorized');
-      error.statusCode = 401;
-      error.errors = { message: "User not authorized to update this run" };
-      return next(error);
+      return res.status(401).json({ message: "Unauthorized" });
     }
 
-    run = await Run.findByIdAndUpdate(req.params.id, req.body, { new: true })
-                     .populate('author', '_id username');
+    const updatedData = {
+      distance: req.body.distance,
+      hours: req.body.hours,
+      minutes: req.body.minutes,
+      seconds: req.body.seconds
+    };
 
+    run = await Run.findByIdAndUpdate(req.params.id, updatedData, { new: true })
+                     .populate('author', '_id username');
     return res.json(run);
   } catch (err) {
     next(err);
@@ -100,9 +98,13 @@ router.delete('/:id', requireUser, async (req, res, next) => {
 
 router.post('/', requireUser, validateRunInput, async (req, res, next) => {
   try {
+    const { distance, hours, minutes, seconds } = req.body;
     const newRun = new Run({
-      text: req.body.text,
-      author: req.user._id
+      author: req.user._id,
+      distance,
+      hours,
+      minutes,
+      seconds
     });
 
     let run = await newRun.save();
