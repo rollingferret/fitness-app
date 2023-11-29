@@ -11,7 +11,7 @@ function SignupForm () {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const errors = useSelector(state => state.errors.session);
-  const modal = useSelector(state => state.ui.modal); // Naoko added
+  const modal = useSelector(state => state.ui.modal); 
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -56,7 +56,7 @@ function SignupForm () {
 
   return (
     <>
-      { (modal === "signup") && // Naoko added 
+      { (modal === "signup") &&
         <div className="modal-body" onClick={() => dispatch(closeModal())}>
           <form className="session-form" onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit}>
             <h2>Sign Up Form</h2>
