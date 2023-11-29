@@ -11,7 +11,7 @@ function LoginForm () {
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
-  const modal = useSelector(state => state.ui.modal); // Naoko added
+  const modal = useSelector(state => state.ui.modal);
 
   useEffect(() => {
     return () => {
@@ -32,7 +32,7 @@ function LoginForm () {
 
   return (
     <>
-      { (modal === "login") && // Naoko added 
+      { (modal === "login") && 
         <div className="modal-body" onClick={() => dispatch(closeModal())}>
           <form className="session-form" onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit}>
             <h2>Log In Form</h2>

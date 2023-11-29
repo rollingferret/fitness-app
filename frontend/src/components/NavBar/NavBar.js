@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import './NavBar.css';
 import { logout } from '../../store/session';
-import { openModal, closeModal } from "../../store/ui"; // Naoko added
+import { openModal, closeModal } from "../../store/ui";
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
@@ -13,7 +13,6 @@ function NavBar () {
       dispatch(logout());
   }
 
-  // Naoko added start ----------------------
   const openLogin = (e) => {
     e.preventDefault();
     e.stopPropagation()
@@ -25,7 +24,6 @@ function NavBar () {
     e.stopPropagation()
     dispatch(openModal("signup"));
   }
-  // Naoko added end ----------------------
 
   const getLinks = () => {
     if (loggedIn) {
@@ -34,6 +32,7 @@ function NavBar () {
           <Link to={'/runs'}>All Exercises</Link>
           <Link to={'/profile'}>Profile</Link>
           <Link to={'/runs/new'}>Write a Run</Link>
+          <Link to={'/user_profile'}>User Profile</Link>
           <button onClick={logoutUser}>Logout</button>
         </div>
       );
@@ -42,7 +41,6 @@ function NavBar () {
         <div className="links-auth">
           {/* <Link to={'/signup'}>Signup</Link>
           <Link to={'/login'}>Login</Link> */}
-          {/* // Naoko added start ---------------------- */}
           <button
             className='' 
             type="submit" 
@@ -61,7 +59,6 @@ function NavBar () {
               Sign Up
             </div>
           </button>
-          {/* // Naoko added end ---------------------- */}
         </div>
       );
     }

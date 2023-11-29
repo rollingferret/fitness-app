@@ -3,13 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors';
 import runs from './runs';
-import ui from './ui'; // Naoko added
+import ui from './ui'; 
 
 const rootReducer = combineReducers({
   runs,
   session,
   errors,
-  ui // Naoko added
+  ui
 });
 
 let enhancer;
