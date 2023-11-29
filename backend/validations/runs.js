@@ -19,4 +19,3 @@ const validateRunInput = [
 
 module.exports = validateRunInput;
 
-module.exports = validateRunInput;

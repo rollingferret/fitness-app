@@ -99,21 +99,14 @@ export const UPDATE_RUN_SUCCESS = 'UPDATE_RUN_SUCCESS';
 export const UPDATE_RUN_FAILURE = 'UPDATE_RUN_FAILURE';
 
 export const updateRun = (runId, updatedRunData) => async dispatch => {
-  // const csrfToken = document.cookie.split(';')
-  //                         .find(cookie => cookie.trim().startsWith('CSRF-TOKEN='))
-  //                         ?.split('=')[1];
-
   try {
     const res = await jwtFetch(`/api/runs/${runId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
-        // 'X-CSRF-Token': csrfToken, 
       },
       body: JSON.stringify(updatedRunData)
     });
-
-    console.log(updatedRunData)
 
     if (res.ok) {
       const run = await res.json();
@@ -191,8 +184,7 @@ const runsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
       case RECEIVE_USER_LOGOUT:
         return { ...state, user: {}, new: undefined }
         case UPDATE_RUN_SUCCESS:
-          return {...state, all: {...state.all, [action.payload._id]: action.payload }
-          };
+          return {...state, all: {...state.all, [action.payload._id]: action.payload}};
         case UPDATE_RUN_FAILURE:
           return {...state, errors: action.payload};
         case FETCH_RUN_SUCCESS:
