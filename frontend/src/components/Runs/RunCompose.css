@@ -46,12 +46,12 @@
   border-radius: 4px;
 }
 
-.run-graph {
+/* .run-graph {
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 4px;
   background-color: #f8f8f8; /* Light background for graph */
-}
+/* } */
 
 .errors {
   color: red;
