@@ -4,9 +4,9 @@ import * as d3 from 'd3';
 function RunGraph({ runs }) {
   const svgRef = useRef();
 
-  useEffect(() => {
+ useEffect(() => {
     if (!Array.isArray(runs) || runs.length === 0) {
-      return; // Exit if runs is not an array or is empty
+      return;
     }
 
     const margin = { top: 20, right: 20, bottom: 60, left: 60 }; // Adjusted margins for labels
@@ -22,16 +22,16 @@ function RunGraph({ runs }) {
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    const xScale = d3.scaleTime()
-      .domain(d3.extent(runs, d => new Date(d.createdAt)))
+      const xScale = d3.scaleLinear()
+      .domain([0, runs.length - 1]) // Range from 0 to the number of runs minus 1
       .range([0, width]);
 
     const yScale = d3.scaleLinear()
       .domain([0, d3.max(runs, d => d.distance)])
       .range([height, 0]);
 
-    const line = d3.line()
-      .x(d => xScale(new Date(d.createdAt)))
+      const line = d3.line()
+      .x((d, i) => xScale(i)) // Use the index 'i' for the x value
       .y(d => yScale(d.distance));
 
     svg.append('path')
@@ -42,8 +42,9 @@ function RunGraph({ runs }) {
 
     // X-axis
     svg.append('g')
-      .attr('transform', `translate(0,${height})`)
-      .call(d3.axisBottom(xScale));
+    .attr('transform', `translate(0,${height})`)
+    .call(d3.axisBottom(xScale).ticks(runs.length).tickFormat(i => `Run ${i + 1}`));
+
 
     // Y-axis
     svg.append('g')
@@ -54,7 +55,7 @@ function RunGraph({ runs }) {
       .attr('text-anchor', 'end')
       .attr('x', width)
       .attr('y', height + margin.bottom - 10)
-      .text('Date');
+      .text('Run Number');
 
     // Y-axis label
     svg.append('text')
