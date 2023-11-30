@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RunGraph from '../Runs/RunGraph';
 import { fetchUserRuns } from '../../store/runs';
+import MileTimeGraph from '../MileTimeGraph/MileTimeGraph';
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -39,11 +40,14 @@ const UserProfile = () => {
             <div>Weight :</div>
  
             {isLoading ? (
-        <p>Loading runs...</p>
-      ) : (
+      <p>Loading runs...</p>
+    ) : (
+      <>
         <RunGraph runs={runsArray || []} />
-      )}
-    </main>
-  )
+        <MileTimeGraph runs={runsArray || []} />
+      </>
+    )}
+  </main>
+);
 };
 export default UserProfile;
