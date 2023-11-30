@@ -13,6 +13,7 @@ import Runs from './components/Runs/Runs';
 import Profile from './components/Profile/Profile';
 import RunCompose from './components/Runs/RunCompose';
 import UserProfile from './components/UserProfile/UserProfile';
+import LoginMenuPage from './components/LoginMenuPage/LoginMenuPage';
 
 import { getCurrentUser } from './store/session';
 
@@ -25,7 +26,7 @@ function App() {
   // const loggedIn = useSelector(state => !!state.session.user);
 
   const location = useLocation();
-  const isTopPage = location.pathname === '/';
+  const isTopPage = (location.pathname === '/' || location.pathname === '/loginmenu');
 
   return loaded && (
     <>
@@ -38,7 +39,7 @@ function App() {
           {loggedIn ? <UserProfile /> : <Redirect to="/login" />}
         </Route> */}
         <AuthRoute exact path="/" component={MainPage} />
-        {/* <AuthRoute exact path="/navbar" component={NavBar} /> */}
+        <AuthRoute exact path="/loginmenu" component={LoginMenuPage} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
         <ProtectedRoute exact path="/runs" component={Runs} />
