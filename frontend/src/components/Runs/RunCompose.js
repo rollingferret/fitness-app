@@ -22,15 +22,23 @@ function RunCompose () {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newRunData = { distance, time: (hours * 60 + minutes + seconds / 60) };
-    dispatch(composeRun({ distance, hours, minutes, seconds }));
-    setDistance('');
-    setHours('');
-    setMinutes('');
-    setSeconds('');
-    setRunningData(prevData => [...prevData, newRunData]);
+    const newRunData = { 
+      distance, 
+      time: (hours * 60 + minutes + seconds / 60) 
+    };
+    // Ensure distance, hours, minutes, and seconds are defined
+    if (distance && hours && minutes && seconds) {
+      dispatch(composeRun({ distance, hours, minutes, seconds }));
+      setRunningData(prevData => [...prevData, newRunData]);
+      // Reset form fields
+      setDistance('');
+      setHours('');
+      setMinutes('');
+      setSeconds('');
+    } else {
+      console.error("Run data is incomplete");
+    }
   };
-
   // const update = e => setText(e.currentTarget.value);
 
   return (

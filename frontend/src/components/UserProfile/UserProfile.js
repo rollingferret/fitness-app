@@ -1,17 +1,31 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import RunGraph from '../Runs/RunGraph';
+import { fetchUserRuns } from '../../store/runs';
 
 const UserProfile = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  const loggedIn = useSelector(state => !!state.session.user);
+  const runs = useSelector(state => state.runs.user);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setIsLoading(true);
+      dispatch(fetchUserRuns(user._id))
+        .then(() => setIsLoading(false))
+        .catch(() => setIsLoading(false));
+    }
+  }, [user, dispatch]);
 
   if (!user) {
     return null;
   }
 
-  if (loggedIn) {
+  // Ensure that 'runs' is always an array before passing it to RunGraph
+  const runsArray = Array.isArray(runs) ? runs : [];
+
     return (
         <main>
 
@@ -23,10 +37,13 @@ const UserProfile = () => {
             <div>Location :</div>
             <div>Height :</div>
             <div>Weight :</div>
-
-        </main>
-    )
-  }
+ 
+            {isLoading ? (
+        <p>Loading runs...</p>
+      ) : (
+        <RunGraph runs={runsArray || []} />
+      )}
+    </main>
+  )
 };
-
 export default UserProfile;
