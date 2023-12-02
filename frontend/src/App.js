@@ -14,6 +14,7 @@ import Profile from './components/Profile/Profile';
 import RunCompose from './components/Runs/RunCompose';
 import UserProfile from './components/UserProfile/UserProfile';
 import LoginMenuPage from './components/LoginMenuPage/LoginMenuPage';
+import './index.css'
 
 import { getCurrentUser } from './store/session';
 
@@ -34,6 +35,7 @@ function App() {
   return loaded && (
     <>
       {/* <MainPage /> */}
+      {!isTopPage && <div className='modal'></div>}
       {!isTopPage && <NavBar />}
       <LoginForm />
       <SignupForm />
