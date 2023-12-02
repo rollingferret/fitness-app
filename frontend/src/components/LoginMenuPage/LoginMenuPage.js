@@ -2,21 +2,26 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { openModal } from "../../store/ui";
 import { login } from '../../store/session';
+// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './LoginMenuPage.css';
 
 const LoginMenuPage = () => {
 
   const dispatch = useDispatch();
+  // const history = useHistory();
+
   const openLogin = (e) => {
     e.preventDefault();
     // e.stopPropagation()
     dispatch(openModal("login"));
+    // history.push('/login');
   }
 
   const openSignup = (e) => {
     e.preventDefault();
-    e.stopPropagation()
+    // e.stopPropagation()
     dispatch(openModal("signup"));
+    // history.push('/signup');
   }
 
   const handleDemoSubmit = (e) => {
@@ -51,16 +56,16 @@ const LoginMenuPage = () => {
             onClick={openSignup}
           >
             <div className=''  data-font-weight="semibold">
-            Sign Up
+              Sign Up
             </div>
           </button>
           <button
-            className='delay-time04 box fadeUp'
+            className='delay-time04 box fadeUp demo'
             type="submit"
             onClick={handleDemoSubmit}
           >
             <div className=''  data-font-weight="semibold">
-            Demo
+              Demo
             </div>
           </button>
       </div>
