@@ -53,47 +53,55 @@ const UserProfile = () => {
   const runsArray = Array.isArray(runs) ? runs : [];
 
   return (
-    <main className="user-profile-container">
-        <div className="animated-background"></div>
-      <div className="profile-content">
-        <div className="profile-image-container">
-          <img src={stockPortrait} alt="Stock Portrait" className="profile-image" />
+    <>
+        <div className="graph-container">
+      {isLoading ? (
+        <p>Loading runs...</p>
+      ) : (
+        <div className="graph-wrapper">
+          <div className="graph-item">
+            <RunGraph runs={runsArray || []} />
+          </div>
+          <div className="graph-item">
+            <MileTimeGraph runs={runsArray || []} />
+          </div>
         </div>
-        <div className="user-details">
-          <div className="detail-item">
-            <span className="username">{user.username}</span>
+      )}
+    </div>
+
+      <div className="profile-content">
+        <div className="user-info-container">
+          <div className="profile-image-container">
+            <img src={stockPortrait} alt="Stock Portrait" className="profile-image" />
           </div>
-          <div className="detail-item">{user.email}</div>
-          <div className="detail-item">
-            <span>Male</span> {/* Add user gender */}
-          </div>
-          <div className="detail-item">
-            <span>25 years old</span> {/* Add user age */}
-          </div>
-          <div className="detail-item">
-            <span>New York, NY</span> {/* Add user location */}
-          </div>
-          <div className="detail-item">
-            <span>6' 0"</span> {/* Add user height */}
-          </div>
-          <div className="detail-item">
-            <span>180 lbs</span> {/* Add user weight */}
+          <div className="user-details">
+            <div className="detail-item">
+              <span className="username">{user.username}</span>
+            </div>
+            <div className="detail-item">{user.email}</div>
+            <div className="detail-item">
+              <span>Male</span> {/* Add user gender */}
+            </div>
+            <div className="detail-item">
+              <span>25 years old</span> {/* Add user age */}
+            </div>
+            <div className="detail-item">
+              <span>New York, NY</span> {/* Add user location */}
+            </div>
+            <div className="detail-item">
+              <span>6' 0"</span> {/* Add user height */}
+            </div>
+            <div className="detail-item">
+              <span>180 lbs</span> {/* Add user weight */}
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="graph-container">
-        {isLoading ? (
-          <p>Loading runs...</p>
-        ) : (
-          <>
-            <RunGraph runs={runsArray || []} />
-            <MileTimeGraph runs={runsArray || []} />
-          </>
-        )}
-      </div>
-    </main>
+      <div className="animated-background"></div>
+    </>
   );
-};
+
+}
 
 export default UserProfile;
