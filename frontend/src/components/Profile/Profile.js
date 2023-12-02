@@ -25,10 +25,12 @@ function Profile () {
             key={run._id}
             run={run}
           />
-        ))}
+        ))
+      }
       </>
     );
   }
 }
+debugger
 
 export default Profile;

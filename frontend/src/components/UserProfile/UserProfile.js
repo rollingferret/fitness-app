@@ -1,32 +1,99 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import RunGraph from '../Runs/RunGraph';
+import MileTimeGraph from '../MileTimeGraph/MileTimeGraph';
+import { fetchUserRuns } from '../../store/runs';
+import './UserProfile.css';
+import stockPortrait from './face.jpg';
 
 const UserProfile = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  const loggedIn = useSelector(state => !!state.session.user);
+  const runs = useSelector(state => state.runs.user);
+  const [isLoading, setIsLoading] = useState(false);
 
-  if (!user) {
-    return null;
-  }
+  useEffect(() => {
+    const animatedBg = document.querySelector('.animated-background');
 
-  if (loggedIn) {
-    return (
-        <main>
+    const resizeHandler = () => {
+      const height = window.innerHeight;
+      const width = window.innerWidth;
+      animatedBg.style.width = `${width}px`;
+      animatedBg.style.height = `${height}px`;
+    };
 
-            <h1>User Profile</h1>
-            <div>Name : {user.username}</div>
-            <div>Email : {user.email}</div>
-            <div>Gender :</div>
-            <div>Age :</div>
-            <div>Location :</div>
-            <div>Height :</div>
-            <div>Weight :</div>
+    resizeHandler(); // Set initial size
 
-        </main>
-    )
-  }
+    window.addEventListener('resize', resizeHandler);
+
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user) {
+        setIsLoading(true);
+        try {
+          await dispatch(fetchUserRuns(user._id));
+          setIsLoading(false);
+        } catch (error) {
+          setIsLoading(false);
+          // Handle error if needed
+        }
+      }
+    };
+
+    fetchData();
+  }, [user, dispatch]);
+
+  if (!user) return null;
+
+  const runsArray = Array.isArray(runs) ? runs : [];
+
+  return (
+    <main className="user-profile-container">
+        <div className="animated-background"></div>
+      <div className="profile-content">
+        <div className="profile-image-container">
+          <img src={stockPortrait} alt="Stock Portrait" className="profile-image" />
+        </div>
+        <div className="user-details">
+          <div className="detail-item">
+            <span className="username">{user.username}</span>
+          </div>
+          <div className="detail-item">{user.email}</div>
+          <div className="detail-item">
+            <span>Male</span> {/* Add user gender */}
+          </div>
+          <div className="detail-item">
+            <span>25 years old</span> {/* Add user age */}
+          </div>
+          <div className="detail-item">
+            <span>New York, NY</span> {/* Add user location */}
+          </div>
+          <div className="detail-item">
+            <span>6' 0"</span> {/* Add user height */}
+          </div>
+          <div className="detail-item">
+            <span>180 lbs</span> {/* Add user weight */}
+          </div>
+        </div>
+      </div>
+
+      <div className="graph-container">
+        {isLoading ? (
+          <p>Loading runs...</p>
+        ) : (
+          <>
+            <RunGraph runs={runsArray || []} />
+            <MileTimeGraph runs={runsArray || []} />
+          </>
+        )}
+      </div>
+    </main>
+  );
 };
 
 export default UserProfile;

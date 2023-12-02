@@ -1,0 +1,82 @@
+/* Keep your existing styles here, removing duplicates */
+
+.user-details {
+  margin-top: 1px;
+  text-align: center;
+}
+
+.detail-item {
+  margin-bottom: 10px;
+}
+
+.detail-item span {
+  margin-right: 5px;
+}
+
+.user-profile-container {
+  margin: 1px;
+  padding: 20px;
+  border-radius: 2px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 auto;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 3.2em;
+}
+
+.graph-container {
+  display: list-item;
+  flex-direction: center;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+/* Add these styles to your existing CSS file */
+
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place it behind other content */
+  pointer-events: none; /* Ensure it doesn't interfere with user interaction */
+}
+
+/* Define the animation */
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+/* Apply the animation to the background */
+.animated-background {
+  animation: animatedBackground 20s infinite alternate; /* Adjust duration and other properties as needed */
+  background: linear-gradient(45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 400% 400%; /* You can adjust this for different effects */
+}
