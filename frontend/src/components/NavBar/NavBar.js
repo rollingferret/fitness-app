@@ -3,14 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout, login } from '../../store/session';
 // import { openModal } from "../../store/ui";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function NavBar () {
   // const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-
   const [activeTab, setActiveTab] = useState(1);
+
+  // useEffect(() => {
+  //   // Redirect to the top ("/") after 5 seconds when the user logs out
+  //   const logoutTimeout = setTimeout(() => {
+  //     history.push('/');
+  //   }, 5000);
+
+  //   // Clear the timeout when the component unmounts or when the user logs in again
+  //   return () => {
+  //     clearTimeout(logoutTimeout);
+  //   }; 
+  // }, [history]);
 
   const handleTabHover = (index) => {
     setActiveTab(index);
@@ -120,7 +131,7 @@ function NavBar () {
               </ul>
             </li>
             <li onMouseOver={() => handleTabHover(4)} onClick={logoutUser}>Logout</li>
-            <div id="marker" style={{ transform: `translate(${(activeTab - 1) * 120}px, 0)` }}></div>
+            <div id="marker" style={{ transform: `translate(${(activeTab - 1) * 130 + 300}px, 0)` }}></div>
           </ul>
         </nav>
     </>

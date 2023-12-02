@@ -35,7 +35,7 @@ function App() {
   return loaded && (
     <>
       {/* <MainPage /> */}
-      {!isTopPage && <div className='modal'></div>}
+      {/* {!isTopPage && <div className='modal'></div>} */}
       {!isTopPage && <NavBar />}
       <LoginForm />
       <SignupForm />
