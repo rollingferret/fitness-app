@@ -1,58 +1,56 @@
-/* Keep your existing styles here, removing duplicates */
-
-.user-details {
-  margin-top: 1px;
-  text-align: center;
-}
-
-.detail-item {
-  margin-bottom: 10px;
-}
-
-.detail-item span {
-  margin-right: 5px;
-}
-
-.user-profile-container {
-  margin: 1px;
-  padding: 20px;
-  border-radius: 2px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
 .profile-content {
   display: flex;
+  justify-content: flex-end; /* Align content to the right side */
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%; /* Adjust the width as needed */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.user-info-container {
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Align items to the center */
+  text-align: center; /* Center align the text */
+  margin-left: 20px; /* Shift the content to the left */
+}
+
+.profile-image-container {
+  margin-bottom: 20px;
 }
 
 .profile-image {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: block;
-  margin: 0 auto;
+  border-radius: 50%; /* Makes the image round */
+  max-width: 170px; /* Adjust the maximum width as needed */
+  max-height: 170px; /* Adjust the maximum height as needed */
 }
 
-.username {
-  font-weight: bold;
-  font-size: 3.2em;
+.detail-item {
+  font-size: 18px; /* Update the font size as needed */
 }
 
+/* Adjustments to the existing graph containers */
 .graph-container {
-  display: list-item;
-  flex-direction: center;
-  align-items: flex-start;
-  margin-left: 20px;
+  position: fixed;
+  display: flex;
+  justify-content: space-between; /* Arrange items with space between them */
+  align-items: flex-start; /* Align items at the start */
+  height: 100%;
 }
 
-/* Add these styles to your existing CSS file */
+.graph-wrapper {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping to keep them side by side */
+  width: 100%; /* Occupy full width */
+}
+
+.graph-item {
+  flex: 1; /* Distribute available space equally */
+  margin-right: 10px; /* Adjust margin between graphs as needed */
+}
 
 .animated-background {
   position: fixed;
