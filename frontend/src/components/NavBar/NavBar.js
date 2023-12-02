@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout, login } from '../../store/session';
@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 function NavBar () {
   // const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [activeTab, setActiveTab] = useState(1);
 
@@ -18,6 +19,9 @@ function NavBar () {
   const logoutUser = e => {
       e.preventDefault();
       dispatch(logout());
+      setTimeout(() => {
+        history.push('/');
+      }, 3000);
   }
 
   // const openLogin = (e) => {
