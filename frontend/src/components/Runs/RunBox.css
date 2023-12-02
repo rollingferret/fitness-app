@@ -1,39 +1,106 @@
 .run {
   border: 2px solid blue;
   border-radius: 10px;
-  margin: 0 auto 15px; /* Center the box horizontally and add bottom margin */
-  padding: 10px; /* Reduce padding for a smaller box */
-  max-width: 300px; /* Set a maximum width for the box */
+  margin: 0 auto 15px;
+  padding: 10px;
+  max-width: 300px;
   background-color: #f0f0f0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
 
-  /* Center align username */
-  h3 {
-    margin: 0;
-    font-size: 18px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
+.run h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
 
-  /* Center align text */
-  p {
-    margin-top: 8px;
-    color: #666;
-    line-height: 1.4;
-    text-align: center;
-  }
+.run p {
+  margin-top: 8px;
+  color: #666;
+  line-height: 1.4;
+  text-align: center;
+}
 
-  /* Label styles */
-  .username-label {
-    font-weight: bold;
-    color: #555;
-  }
+.run .username-label {
+  font-weight: bold;
+  color: #555;
+}
 
-  .text-label {
-    font-style: italic;
-    color: #777;
-  }
+.run .text-label {
+  font-style: italic;
+  color: #777;
+}
+
+.run button,
+.run .button-container a,
+.run .button-container button,
+.run .button-container .edit-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: blue;
+  color: white;
+}
+
+.run button:hover,
+.run .button-container a:hover,
+.run .button-container button:hover,
+.run .button-container .edit-button:hover {
+  background-color: #e0e0e0;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.run button:active,
+.run .button-container a:active,
+.run .button-container button:active,
+.run .button-container .edit-button:active {
+  transform: translateY(1px);
+}
+
+.run .button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.run .button-container .edit-button a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+.run .button-container .edit-button:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.run .button-container .edit-button a:hover {
+  background-color: #e0e0e0;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.run .button-container .edit-button:active,
+.run .button-container .edit-button a:active {
+  transform: translateY(1px);
+}
+
+.run .button-container .delete-button {
+  background-color: red;
+  color: white;
+}
+
+.run .miles-text {
+  color: green;
 }

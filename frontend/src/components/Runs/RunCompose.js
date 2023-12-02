@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearRunErrors, composeRun } from '../../store/runs';
 import RunBox from './RunBox';
 import './RunCompose.css';
 import RunGraph from './RunGraph';
 
-function RunCompose () {
+function RunCompose() {
   const [distance, setDistance] = useState('');
   const [hours, setHours] = useState('');
   const [minutes, setMinutes] = useState('');
@@ -17,68 +17,88 @@ function RunCompose () {
   const [runningData, setRunningData] = useState([]);
 
   useEffect(() => {
-    return () => dispatch(clearRunErrors());
+    return () => dispatch(clearRunErrors()); // Clean up error messages on unmount
   }, [dispatch]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newRunData = { distance, time: (hours * 60 + minutes + seconds / 60) };
-    dispatch(composeRun({ distance, hours, minutes, seconds }));
-    setDistance('');
-    setHours('');
-    setMinutes('');
-    setSeconds('');
-    setRunningData(prevData => [...prevData, newRunData]);
+    const newRunData = {
+      distance,
+      time: hours * 60 + Number(minutes) + Number(seconds) / 60 // Calculate total time in minutes
+    };
+
+    if (distance && hours && minutes && seconds) {
+      dispatch(composeRun({ distance, hours, minutes, seconds }));
+      setRunningData(prevData => [...prevData, newRunData]);
+      setDistance('');
+      setHours('');
+      setMinutes('');
+      setSeconds('');
+    } else {
+      console.error("Run data is incomplete");
+    }
   };
 
-  // const update = e => setText(e.currentTarget.value);
-
   return (
-    <>
     <div className="run-compose-container">
       <div className="left-column">
         <form className="compose-run" onSubmit={handleSubmit}>
-          <input type="number" value={distance} onChange={e => setDistance(e.target.value)} placeholder="Distance" required />
-          <input type="number" value={hours} onChange={e => setHours(e.target.value)} placeholder="Hours" required />
-          <input type="number" value={minutes} onChange={e => setMinutes(e.target.value)} placeholder="Minutes" required />
-          <input type="number" value={seconds} onChange={e => setSeconds(e.target.value)} placeholder="Seconds" required />
+          {/* Input fields for distance, hours, minutes, seconds */}
+          <input
+            type="number"
+            value={distance}
+            onChange={e => setDistance(e.target.value)}
+            placeholder="Distance"
+            required
+          />
+          <input
+            type="number"
+            value={hours}
+            onChange={e => setHours(e.target.value)}
+            placeholder="Hours"
+            required
+          />
+          <input
+            type="number"
+            value={minutes}
+            onChange={e => setMinutes(e.target.value)}
+            placeholder="Minutes"
+            required
+          />
+          <input
+            type="number"
+            value={seconds}
+            onChange={e => setSeconds(e.target.value)}
+            placeholder="Seconds"
+            required
+          />
           <input type="submit" value="Submit" />
           <div className="errors">{errors?.text}</div>
         </form>
-        <div className="run-preview">
-          <h3>Run Preview</h3>
-          {/* {text ? <RunBox run={{text, author}} /> : undefined} */}
-        </div>
-        <div className="previous-run">
-          <h3>Previous Run</h3>
-          {newRun ? <RunBox run={newRun} /> : undefined}
-        </div>
       </div>
 
-      <div className="right-column">
+      {/* Run Preview */}
+      <div className="run-preview">
+        {/* <h3>Run Preview</h3> */}
+        {/* Render RunBox or other preview elements if needed */}
+      </div>
+
+      {/* Previous Run */}
+      <div className="previous-run">
+        <h3>Previous Run</h3>
+        {newRun ? <RunBox run={newRun} /> : null}
+      </div>
+
+      {/* Graph section */}
+      {/* <div className="right-column">
         <div className="run-graph">
           <h3>Run Data Visualization</h3>
           <RunGraph runningData={runningData} />
         </div>
-      </div>
+      </div> */}
     </div>
+  );
 
-    {/* Another set of elements */}
-    <div className="compose-run-container">
-      <form className="compose-run" onSubmit={handleSubmit}>
-        {/* ... (existing input fields) */}
-      </form>
-      <div className="run-preview">
-        <h3>Run Preview</h3>
-        {/* Render RunBox here if needed */}
-      </div>
-      <div className="previous-run">
-        <h3>Previous Run</h3>
-        {newRun ? <RunBox run={newRun} /> : undefined}
-      </div>
-    </div>
-  </>
-  )
 }
 
 export default RunCompose;

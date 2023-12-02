@@ -88,8 +88,8 @@ router.delete('/:id', requireUser, async (req, res, next) => {
     if (run.author.toString() !== req.user._id.toString()) {
       return res.status(401).json({ message: "Unauthorized" });
     }
-    // await Run.findByIdAndRemove(req.params.id); 
-    await Run.deleteOne(run); 
+    // await Run.findByIdAndRemove(req.params.id);
+    await Run.deleteOne(run);
     return res.status(200).json({ message: "Run deleted successfully" });
   } catch (err) {
     next(err);
