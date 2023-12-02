@@ -26,7 +26,10 @@ function App() {
   // const loggedIn = useSelector(state => !!state.session.user);
 
   const location = useLocation();
-  const isTopPage = (location.pathname === '/' || location.pathname === '/loginmenu');
+  const isTopPage = (location.pathname === '/' 
+    || location.pathname === '/loginmenu' 
+    || location.pathname === '/login'
+    || location.pathname === '/signup');
 
   return loaded && (
     <>
@@ -47,7 +50,6 @@ function App() {
         <ProtectedRoute exact path="/user_profile" component={UserProfile} />
         <ProtectedRoute exact path="/runs/new" component={RunCompose} />
         <ProtectedRoute exact path="/runs/update/:id" component={RunUpdateForm} />
-    
       </Switch>
     </>
   );

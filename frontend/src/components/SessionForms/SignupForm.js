@@ -62,7 +62,8 @@ function SignupForm () {
         <div className="modal-body" onClick={() => dispatch(closeModal())}>
           <div className='wrapper'>
             <form className="session-form signup-session-form" onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit}>
-              <h2>Sign Up Form</h2>
+              <h2>Sign Up</h2>
+              <div className='session-form-cussion'></div>
               <div className="errors">{errors?.email}</div>
               <input type="text"
                 value={email}
@@ -89,11 +90,13 @@ function SignupForm () {
                 onChange={update('password2')}
                 placeholder="Confirm Password"
               />
-              <input
+              <div className='session-form-cussion2'></div>
+              <button
                 type="submit"
-                value="Sign Up"
                 disabled={!email || !username || !password || password !== password2}
-              />
+              >
+                Sign Up
+              </button>
             </form>
           </div>
         </div>

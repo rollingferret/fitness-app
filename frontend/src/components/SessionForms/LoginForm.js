@@ -36,30 +36,32 @@ function LoginForm () {
         <div className="modal-body" onClick={() => dispatch(closeModal())}>
           <div className='wrapper'>
             <form className="session-form" onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit}>
-              <h2>Log In Form</h2>
+              <h2>Log In</h2>
+              <div className='session-form-cussion'></div>
               <div className="errors">{errors?.email}</div>
-              {/* <label>
-                <span>Email</span> */}
               <input type="text"
                 value={email}
                 onChange={update('email')}
                 placeholder="Email"
               />
-              {/* </label> */}
               <div className="errors">{errors?.password}</div>
-              {/* <label>
-                <span>Password</span> */}
               <input type="password"
                 value={password}
                 onChange={update('password')}
                 placeholder="Password"
               />
-              {/* </label> */}
-              <input
+              {/* <input
                 type="submit"
                 value="Log In"
                 disabled={!email || !password}
-              />
+              /> */}
+              <div className='session-form-cussion2'></div>
+              <button
+                type="submit"
+                disabled={!email || !password}
+              >
+                 Log In
+              </button>
             </form>
           </div>
         </div>
