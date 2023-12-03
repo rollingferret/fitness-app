@@ -189,10 +189,9 @@ const runsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
           return {...state, errors: action.payload};
         case FETCH_RUN_SUCCESS:
             return {...state, all: {...state.all, [action.payload._id]: action.payload}};
-          case DELETE_RUN_SUCCESS:
-              const newState = { ...state };
-              delete newState.all[action.payload];
-              return newState;
+        case DELETE_RUN_SUCCESS:
+          const newState = state.all.filter(run => run._id !== action.payload);
+          return { ...state, all: newState };
       default:
         return state;
     }

@@ -131,7 +131,7 @@ function NavBar () {
               </ul>
             </li>
             <li onMouseOver={() => handleTabHover(4)} onClick={logoutUser}>Logout</li>
-            <div id="marker" style={{ transform: `translate(${(activeTab - 1) * 130 + 300}px, 0)` }}></div>
+            <div id="marker" style={{ transform: `translate(${(activeTab - 1) * 130 + 516}px, 0)` }}></div>
           </ul>
         </nav>
     </>
