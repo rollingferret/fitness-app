@@ -34,11 +34,23 @@ function RunGraph({ runs }) {
       .x((d, i) => xScale(i)) // Use the index 'i' for the x value
       .y(d => yScale(d.distance));
 
-    svg.append('path')
+      svg.append('path')
       .datum(runs)
+      .attr('class', 'line')
       .attr('d', line)
       .attr('fill', 'none')
-      .attr('stroke', 'steelblue');
+      .attr('stroke', 'steelblue')
+      .attr('stroke-width', 3)
+      .attr('stroke-dasharray', function() {
+        const totalLength = this.getTotalLength();
+        return totalLength + ' ' + totalLength;
+      })
+      .attr('stroke-dashoffset', function() {
+        return this.getTotalLength();
+      })
+      .transition()
+      .duration(2000) // Set transition duration in milliseconds
+      .attr('stroke-dashoffset', 0);
 
     // X-axis
     svg.append('g')
