@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { updateRun, fetchRun } from '../../store/runs';
+import './RunUpdate.css';
 
 export default function RunUpdateForm() {
   const [distance, setDistance] = useState('');
@@ -13,7 +14,26 @@ export default function RunUpdateForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const run = useSelector(state => state.runs.all[id]);
-  const errors = useSelector(state => state.runs.errors); 
+  const errors = useSelector(state => state.runs.errors);
+
+  useEffect(() => {
+    const animatedBg = document.querySelector('.animated-background');
+
+    const resizeHandler = () => {
+      const height = window.innerHeight;
+      const width = window.innerWidth;
+      animatedBg.style.width = `${width}px`;
+      animatedBg.style.height = `${height}px`;
+    };
+
+    resizeHandler(); // Set initial size
+
+    window.addEventListener('resize', resizeHandler);
+
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
 
   useEffect(() => {
     if (!run) {
@@ -29,18 +49,47 @@ export default function RunUpdateForm() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(updateRun(id, { distance, hours, minutes, seconds }))
-      .then(() => history.push('/runs')); 
+      .then(() => history.push('/runs'));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* Add input fields for distance, hours, minutes, and seconds */}
-      <input type="number" value={distance} onChange={e => setDistance(e.target.value)} required />
-      <input type="number" value={hours} onChange={e => setHours(e.target.value)} required />
-      <input type="number" value={minutes} onChange={e => setMinutes(e.target.value)} required />
-      <input type="number" value={seconds} onChange={e => setSeconds(e.target.value)} required />
-      {errors && <div className="errors">{errors.text}</div>}
-      <button type="submit">Update Run</button>
-    </form>
+    <>
+    <div className="run-update-container">
+      <form className="update-run" onSubmit={handleSubmit}>
+        <input
+          type="number"
+          value={distance}
+          onChange={(e) => setDistance(e.target.value)}
+          placeholder="Distance"
+          required
+        />
+        <input
+          type="number"
+          value={hours}
+          onChange={(e) => setHours(e.target.value)}
+          placeholder="Hours"
+          required
+        />
+        <input
+          type="number"
+          value={minutes}
+          onChange={(e) => setMinutes(e.target.value)}
+          placeholder="Minutes"
+          required
+        />
+        <input
+          type="number"
+          value={seconds}
+          onChange={(e) => setSeconds(e.target.value)}
+          placeholder="Seconds"
+          required
+        />
+        <button type="submit" className="update-button">Update Run</button>
+        {errors && <div className="errors">{errors.text}</div>}
+      </form>
+    </div>
+    <div className="animated-background"></div>
+    </>
   );
+
 }
