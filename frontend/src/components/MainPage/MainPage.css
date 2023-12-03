@@ -1,3 +1,16 @@
+h1::before{/*疑似要素*/
+  content: 'Run Tracker';
+  color: darkgray; /*文字色*/
+  font-size: 2em; /*2倍サイズ*/
+  display: block; /*改行するように*/
+}
+
+h1 {
+  font-size: 30px;
+  font-style: italic;
+  color: darkgray;
+}
+
 .bg-bubbles {
   position: absolute;
   top: 0;
