@@ -17,7 +17,14 @@
     background-color: #fff; /* Set a background color */
   }
 
-  .update-run input[type="number"],
+  .update-run input[type="number"] {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      color: black;
+    }
+
   .update-run input[type="submit"] {
     padding: 8px;
     border: 1px solid #ddd;
@@ -27,7 +34,7 @@
 
   .update-run input[type="submit"] {
     background-color: #4CAF50;
-    color: white;
+    color: black;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -79,7 +86,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Place it behind other content */
+    z-index: -2; /* Place it behind other content */
     pointer-events: none; /* Ensure it doesn't interfere with user interaction */
   }
 

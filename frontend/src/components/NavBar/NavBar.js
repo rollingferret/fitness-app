@@ -20,7 +20,7 @@ function NavBar () {
   //   // Clear the timeout when the component unmounts or when the user logs in again
   //   return () => {
   //     clearTimeout(logoutTimeout);
-  //   }; 
+  //   };
   // }, [history]);
 
   const handleTabHover = (index) => {
@@ -131,7 +131,7 @@ function NavBar () {
               </ul>
             </li>
             <li onMouseOver={() => handleTabHover(4)} onClick={logoutUser}>Logout</li>
-            <div id="marker" style={{ transform: `translate(${(activeTab - 1) * 130 + 300}px, 0)` }}></div>
+            <div id="marker" style={{ transform: `translate(${(activeTab + 0.7) * 130 + 300}px, 0)` }}></div>
           </ul>
         </nav>
     </>
