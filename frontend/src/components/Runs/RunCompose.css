@@ -1,31 +1,35 @@
+/* RunCompose.css */
+
 .run-compose-container {
   display: flex;
-  flex-wrap: wrap; /* Responsive wrap */
-  gap: 20px; /* Spacing between columns */
-  font-family: 'Arial', sans-serif; /* Example font */
+  justify-content: space-between;
+  align-items: center; /* Add this line */
+  font-family: 'Arial', sans-serif;
 }
 
-.left-column,
-.right-column {
+.previous-run {
   flex: 1;
-  min-width: 300px; /* Minimum width for responsiveness */
+  text-align: center; /* Add this line */
+  margin-left: -200px; /* Add this line */
+  margin-right: 10px; /* Add this line */
 }
 
 .compose-run {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Spacing between form elements */
+  gap: 10px;
 }
 
-.compose-run input[type="number"] {
+.compose-run input[type="number"],
+.compose-run input[type="submit"] {
   padding: 8px;
   border: 1px solid #ddd;
-  border-radius: 4px; /* Rounded corners */
-  font-size: 16px; /* Readable font size */
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .compose-run input[type="submit"] {
-  background-color: #4CAF50; /* Example button color */
+  background-color: #4CAF50;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -35,23 +39,8 @@
 }
 
 .compose-run input[type="submit"]:hover {
-  background-color: #45a049; /* Slightly darker on hover */
+  background-color: #45a049;
 }
-
-.run-preview,
-.previous-run {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 4px;
-}
-
-/* .run-graph {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 4px;
-  background-color: #f8f8f8; /* Light background for graph */
-/* } */
 
 .errors {
   color: red;
@@ -64,9 +53,30 @@ h3 {
   color: #333;
 }
 
-/* Additional Media Queries for responsiveness */
-@media (max-width: 600px) {
-  .run-compose-container {
-    flex-direction: column;
+
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place it behind other content */
+  pointer-events: none; /* Ensure it doesn't interfere with user interaction */
+}
+
+/* Define the animation */
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
   }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+/* Apply the animation to the background */
+.animated-background {
+  animation: animatedBackground 20s infinite alternate; /* Adjust duration and other properties as needed */
+  background: linear-gradient(45deg, #a49c99, #8f4964, #23A6D5, #23D5AB);
+  background-size: 400% 400%; /* You can adjust this for different effects */
 }

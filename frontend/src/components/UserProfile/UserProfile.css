@@ -75,6 +75,6 @@
 /* Apply the animation to the background */
 .animated-background {
   animation: animatedBackground 20s infinite alternate; /* Adjust duration and other properties as needed */
-  background: linear-gradient(45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background: linear-gradient(45deg, #a49c99, #8f4964, #23A6D5, #23D5AB);
   background-size: 400% 400%; /* You can adjust this for different effects */
 }
