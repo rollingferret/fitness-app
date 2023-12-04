@@ -58,14 +58,16 @@ const UserProfile = () => {
       {isLoading ? (
         <p>Loading runs...</p>
       ) : (
-        <div className="graph-wrapper">
-          <div className="graph-item">
-            <RunGraph runs={runsArray || []} />
-          </div>
-          <div className="graph-item">
-            <MileTimeGraph runs={runsArray || []} />
-          </div>
-        </div>
+<div className="graph-wrapper">
+  <div className="graph-item">
+    <h2>Distance Over Time</h2> 
+    <RunGraph runs={runsArray || []} />
+  </div>
+  <div className="graph-item">
+    <h2>Mile Time Over Time</h2> 
+    <MileTimeGraph runs={runsArray || []} />
+  </div>
+</div>
       )}
     </div>
 

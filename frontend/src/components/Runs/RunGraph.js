@@ -67,6 +67,7 @@ function RunGraph({ runs }) {
       .attr('text-anchor', 'end')
       .attr('x', width)
       .attr('y', height + margin.bottom - 10)
+      .attr('fill', 'white')
       .text('Run Number');
 
     // Y-axis label
@@ -75,6 +76,7 @@ function RunGraph({ runs }) {
       .attr('transform', 'rotate(-90)')
       .attr('y', -margin.left + 20)
       .attr('x', -margin.top)
+      .attr('fill', 'white')
       .text('Distance (km)');
   }, [runs]);
 
