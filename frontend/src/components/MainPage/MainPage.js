@@ -3,7 +3,7 @@ import './MainPage.css'
 
 
 function MainPage() {
-  
+
   const history = useHistory();
   const handlePageClick = () => {
     // Use the history object to navigate to the next page
@@ -14,17 +14,15 @@ function MainPage() {
       <div onClick={handlePageClick}>
         <Link to="/NavBar">
           <header id="header">
-            <h1>Track Your Run to Goal</h1>
+          <h1 style={{ fontSize: '2.3em' }}>Track Your Running Goals</h1>
             <div id="video-area">
               <video id="video"  webkit-playsinline playsInline muted autoPlay loop>
                 <source src={require('./istockphoto-593348590-640_adpp_is.mp4')} type="video/mp4" />
-                <p>動画を再生できる環境ではありません。</p>
               </video>
             </div>
           </header>
           <div id="container">
-            <p>ここにコンテンツが入ります</p>  
-          </div> 
+          </div>
 
 
           <p>Fitness App</p>
@@ -44,11 +42,11 @@ function MainPage() {
 
 
           <footer>
-            Copyright &copy; 2023 
+            Copyright &copy; 2023
           </footer>
         </Link>
       </div>
     );
   }
-  
+
   export default MainPage;
