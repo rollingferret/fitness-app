@@ -60,11 +60,11 @@ const UserProfile = () => {
       ) : (
 <div className="graph-wrapper">
   <div className="graph-item">
-    <h2>Distance Over Time</h2> 
+    <h2>Distance per Run</h2>
     <RunGraph runs={runsArray || []} />
   </div>
   <div className="graph-item">
-    <h2>Mile Time Over Time</h2> 
+    <h2>Pace per Run</h2>
     <MileTimeGraph runs={runsArray || []} />
   </div>
 </div>

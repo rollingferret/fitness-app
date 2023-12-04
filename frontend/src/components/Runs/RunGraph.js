@@ -40,7 +40,7 @@ function RunGraph({ runs }) {
       .attr('d', line)
       .attr('fill', 'none')
       .attr('stroke', 'steelblue')
-      .attr('stroke-width', 3)
+      .attr('stroke-width', 5)
       .attr('stroke-dasharray', function() {
         const totalLength = this.getTotalLength();
         return totalLength + ' ' + totalLength;
