@@ -14,7 +14,7 @@ function MainPage() {
       <div onClick={handlePageClick}>
         <Link to="/NavBar">
           <header id="header">
-            <h1>Fitness App</h1>
+            <h1>Track Your Run to Goal</h1>
             <div id="video-area">
               <video id="video"  webkit-playsinline playsInline muted autoPlay loop>
                 <source src={require('./istockphoto-593348590-640_adpp_is.mp4')} type="video/mp4" />
