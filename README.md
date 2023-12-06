@@ -141,8 +141,17 @@ export default MileTimeGraph;
 ```
 
 ## Future Directions
-- Integration with external APIs for run tracking and workout construction.
+- Integration with external APIs (ex. Google Maps) for run tracking and workout construction.
 - Social features to connect with other runners.
 - Advanced analytics for more in-depth insights into run patterns and progress.
 
+## Team Members
+- **Naoko Sugawara:** Name and Background / Picture
+- **Neel Kachalia:** Name and Background / Picture
+- **Akash Pulluru:** Front-end JavaScript library used for building the user interface.
+
+
+
 ---
+
+
