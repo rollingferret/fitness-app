@@ -148,7 +148,7 @@ export default MileTimeGraph;
 ## Team Members
 - **Naoko Sugawara:** Name and Background / Picture
 - **Neel Kachalia:** Name and Background / Picture
-- **Akash Pulluru:** Front-end JavaScript library used for building the user interface.
+- **Akash Pulluru:** Name and Background / Picture
 
 
 
