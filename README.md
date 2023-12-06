@@ -1,3 +1,58 @@
+
+---
+
+# Run Tracker App
+
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Live Demo](#live-demo)
+3. [Technologies Used](#technologies-used)
+4. [Key Features](#key-features)
+    - [4.1 Run Data Management](#41-run-data-management)
+    - [4.2 Data Visualization with D3.js](#42-data-visualization-with-d3js)
+5. [Code Snippets](#code-snippets)
+6. [Future Directions](#future-directions)
+
+## Introduction
+The Run Tracker App is a MERN-based web application designed that enables runners to track and analyze their running sessions. Users can log their runs, update previous runs, see other User's runs, view detailed statistics, and visualize their progress over time. 
+
+## Live Demo
+[Click here to view the app](#) ([])
+
+## Technologies Used
+- **MongoDB:** NoSQL database used for storing user and run data.
+- **Express.js:** Web application framework for Node.js, used for building the API.
+- **React:** Front-end JavaScript library used for building the user interface.
+- **Node.js:** JavaScript runtime for executing server-side JavaScript.
+- **D3.js:** JavaScript library for producing dynamic, interactive data visualizations.
+
+## Key Features
+
+### 4.1 Run Data Management
+Users can create, view, update, and delete run entries. Each run entry includes details such as distance and run time. In an attempt to efficiently handle CRUD operations and ensure data integrity, we used Mongoose for MongoDB object modeling and Express routes to manage API requests and responses.
+
+#### Code Snippet
+```javascript
+// Run creation in Express
+router.post('/', requireUser, validateRunInput, async (req, res, next) => {
+  // ...
+  const newRun = new Run({
+    author: req.user._id,
+    distance,
+    hours,
+    minutes,
+    seconds
+  });
+  // ...
+});
+```
+
+### 4.2 Data Visualization with D3.js
+A key feature of our app is the visualization of run data using D3.js. D3 enabled us to create dynamic, interactive graphs that automatically update with new run data.
+
+#### Code Snippet
+```javascript
+// Mile Time Graph Component using D3.js
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
@@ -82,3 +137,12 @@ function MileTimeGraph({ runs }) {
   }
 
 export default MileTimeGraph;
+
+```
+
+## Future Directions
+- Integration with external APIs for run tracking and workout construction.
+- Social features to connect with other runners.
+- Advanced analytics for more in-depth insights into run patterns and progress.
+
+---
