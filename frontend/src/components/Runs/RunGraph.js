@@ -22,35 +22,37 @@ function RunGraph({ runs }) {
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
-      const xScale = d3.scaleLinear()
-      .domain([0, runs.length - 1]) // Range from 0 to the number of runs minus 1
-      .range([0, width]);
+    const reversedRuns = runs.slice().reverse();
 
-    const yScale = d3.scaleLinear()
-      .domain([0, d3.max(runs, d => d.distance)])
-      .range([height, 0]);
+    const xScale = d3.scaleLinear()
+    .domain([0, reversedRuns.length - 1]) // Reversed domain
+    .range([0, width]);
 
-      const line = d3.line()
-      .x((d, i) => xScale(i)) // Use the index 'i' for the x value
-      .y(d => yScale(d.distance));
+  const yScale = d3.scaleLinear()
+    .domain([0, d3.max(runs, d => d.distance)])
+    .range([height, 0]);
 
-      svg.append('path')
-      .datum(runs)
-      .attr('class', 'line')
-      .attr('d', line)
-      .attr('fill', 'none')
-      .attr('stroke', 'steelblue')
-      .attr('stroke-width', 5)
-      .attr('stroke-dasharray', function() {
-        const totalLength = this.getTotalLength();
-        return totalLength + ' ' + totalLength;
-      })
-      .attr('stroke-dashoffset', function() {
-        return this.getTotalLength();
-      })
-      .transition()
-      .duration(2000) // Set transition duration in milliseconds
-      .attr('stroke-dashoffset', 0);
+  const line = d3.line()
+    .x((d, i) => xScale(i)) // Use the index 'i' for the x value
+    .y(d => yScale(d.distance));
+
+  svg.append('path')
+    .datum(reversedRuns) // Use the reversed data
+    .attr('class', 'line')
+    .attr('d', line)
+    .attr('fill', 'none')
+    .attr('stroke', 'steelblue')
+    .attr('stroke-width', 5)
+    .attr('stroke-dasharray', function() {
+      const totalLength = this.getTotalLength();
+      return totalLength + ' ' + totalLength;
+    })
+    .attr('stroke-dashoffset', function() {
+      return this.getTotalLength();
+    })
+    .transition()
+    .duration(2000) // Set transition duration in milliseconds
+    .attr('stroke-dashoffset', 0);
 
     // X-axis
     svg.append('g')
