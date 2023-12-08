@@ -58,7 +58,7 @@ export const fetchRun = runId => async dispatch => {
       });
     }
   } catch (error) {
-    console.log("error")
+    // console.log("error")
   }
 };
 
@@ -137,7 +137,7 @@ export const deleteRun = runId => async dispatch => {
     const res = await jwtFetch(`/api/runs/${runId}`, {
       method: 'DELETE'
     });
-    console.log(res)
+    // console.log(res)
 
     if (res.ok) {
       dispatch({

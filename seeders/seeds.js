@@ -46,7 +46,7 @@ for (let i = 0; i < NUM_SEED_RUNS; i++) {
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => {
-    console.log('Connected to MongoDB successfully');
+    // console.log('Connected to MongoDB successfully');
     insertSeeds();
   })
   .catch(err => {
@@ -55,14 +55,14 @@ mongoose
   });
 
 const insertSeeds = () => {
-console.log("Resetting db and seeding users and runs...");
+// console.log("Resetting db and seeding users and runs...");
 
 User.collection.drop()
                 .then(() => Run.collection.drop())
                 .then(() => User.insertMany(users))
                 .then(() => Run.insertMany(runs))
                 .then(() => {
-                    console.log("Done!");
+                    // console.log("Done!");
                     mongoose.disconnect();
                 })
                 .catch(err => {
