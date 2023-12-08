@@ -44,9 +44,9 @@
 // );
 
 // // Attach Express routers
-app.use('/api/users', usersRouter);
-app.use('/api/runs', runsRouter);
-app.use('/api/csrf', csrfRouter);
+// app.use('/api/users', usersRouter);
+// app.use('/api/runs', runsRouter);
+// app.use('/api/csrf', csrfRouter);
 
 // app.use((req, res, next) => {
 //   const err = new Error('Not Found');
