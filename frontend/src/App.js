@@ -15,6 +15,7 @@ import RunCompose from './components/Runs/RunCompose';
 import UserProfile from './components/UserProfile/UserProfile';
 import LoginMenuPage from './components/LoginMenuPage/LoginMenuPage';
 import UserProfileForm from './components/UserProfileForm/UserProfileForm';
+import Workout from './components/WorkoutPage/Workout';
 import './index.css'
 
 import { getCurrentUser } from './store/session';
@@ -28,8 +29,8 @@ function App() {
   // const loggedIn = useSelector(state => !!state.session.user);
 
   const location = useLocation();
-  const isTopPage = (location.pathname === '/' 
-    || location.pathname === '/loginmenu' 
+  const isTopPage = (location.pathname === '/'
+    || location.pathname === '/loginmenu'
     || location.pathname === '/login'
     || location.pathname === '/signup');
 
@@ -50,6 +51,7 @@ function App() {
         <AuthRoute exact path="/signup" component={SignupForm} />
         <ProtectedRoute exact path="/runs" component={Runs} />
         <ProtectedRoute exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path="/workout" component={Workout} />
         <ProtectedRoute exact path="/user_profile" component={UserProfile} />
         <ProtectedRoute exact path="/user_profile_form" component={UserProfileForm} />
         <ProtectedRoute exact path="/runs/new" component={RunCompose} />
