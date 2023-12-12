@@ -55,6 +55,37 @@ export const logout = () => dispatch => {
     dispatch(logoutUser());
 };
 
+export const getCurrentUser = () => async dispatch => {
+  const res = await jwtFetch('/api/users/current');
+  const user = await res.json();
+  return dispatch(receiveCurrentUser(user));
+};
+
+export const createUserProfile = (user) => async (dispatch) => {
+  const res = await fetch (`/api/users`, {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify(user)
+  });
+
+  if (res.ok) {
+      const user = await res.json();
+      dispatch(receiveCurrentUser(user));
+  }
+}
+
+export const updateUserProfile = (user) => async (dispatch) => {
+  const res = await fetch (`/api/users/${user._id}`, {
+      method: 'PUT',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify(user)
+  });
+
+  if (res.ok) {
+      const user = await res.json();
+      dispatch(receiveCurrentUser(user));
+  }
+}
 
 
 const initialState = {
@@ -89,9 +120,3 @@ export const sessionErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
-
-export const getCurrentUser = () => async dispatch => {
-    const res = await jwtFetch('/api/users/current');
-    const user = await res.json();
-    return dispatch(receiveCurrentUser(user));
-};

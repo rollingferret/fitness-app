@@ -122,10 +122,10 @@ function NavBar () {
             <li onMouseOver={() => handleTabHover(1)}><Link to={'/runs'}>Everyone's Run</Link></li>
             <li onMouseOver={() => handleTabHover(2)}><Link to={'/profile'}>Your Runs</Link></li>
             <li onMouseOver={() => handleTabHover(3)}><Link to={'/user_profile'}>User Profile</Link>
-              <ul class="drop">
+              <ul className="drop">
                 <div>
+                <li><Link to={'/user_profile_form'}>Creat Your Profile</Link></li>
                 <li><Link to={'/runs/new'}>Write a Run</Link></li>
-                <li>menu2</li>
                 <li>menu3</li>
                 </div>
               </ul>

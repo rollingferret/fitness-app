@@ -8,6 +8,7 @@ const { loginUser, restoreUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
+const { differenceInYears, parseISO } = require('date-fns');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -87,6 +88,28 @@ router.get('/current', restoreUser, (req, res) => {
     username: req.user.username,
     email: req.user.email
   });
+});
+
+// Calculate age
+router.get('/user/profile', async (req, res) => {
+  try {
+    const userId = req.user.id; 
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Calculate age from DOB
+    const dob = user.dob; 
+    const age = differenceInYears(new Date(), parseISO(dob));
+
+    // Send user data with calculated age to the frontend
+    res.json({ user: { ...user.toObject(), age } });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 module.exports = router;
