@@ -16,6 +16,23 @@ router.get('/', function(req, res, next) {
   });
 });
 
+// GET /api/users/search/:username
+router.get('/search/:username', async (req, res, next) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const runs = await Run.find({ author: user._id })
+                          .sort({ createdAt: -1 });
+    return res.json(runs);
+  } catch (err) {
+    next(err);
+  }
+});
+
+
 router.post('/register', validateRegisterInput, async (req, res, next) => {
   // Check to make sure no one has already registered with the proposed email or
   // username.

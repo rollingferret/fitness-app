@@ -16,6 +16,7 @@ import UserProfile from './components/UserProfile/UserProfile';
 import LoginMenuPage from './components/LoginMenuPage/LoginMenuPage';
 import Workout from './components/WorkoutPage/Workout';
 import './index.css'
+import SearchTab from './components/SearchTab/SearchTab';
 
 import { getCurrentUser } from './store/session';
 
@@ -54,6 +55,7 @@ function App() {
         <ProtectedRoute exact path="/user_profile" component={UserProfile} />
         <ProtectedRoute exact path="/runs/new" component={RunCompose} />
         <ProtectedRoute exact path="/runs/update/:id" component={RunUpdateForm} />
+        <ProtectedRoute exact path="/search" component={SearchTab} />
       </Switch>
     </>
   );
