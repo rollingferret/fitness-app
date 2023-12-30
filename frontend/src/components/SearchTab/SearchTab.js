@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RunBox from '../Runs/RunBox'; // Reuse the RunBox component
+import './SearchTab.css';
 
 const SearchTab = () => {
   const [username, setUsername] = useState('');
@@ -27,6 +28,7 @@ const SearchTab = () => {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Search by username"
+        style={{ color: 'white' }}
       />
       <button onClick={handleSearch}>Search</button>
 
