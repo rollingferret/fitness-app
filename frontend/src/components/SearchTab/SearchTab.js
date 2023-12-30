@@ -8,8 +8,10 @@ const SearchTab = () => {
 
   const handleSearch = async () => {
     try {
+      console.log('Searching for username:', username); // Add this line
       const response = await fetch(`/api/users/search/${username}`);
       const data = await response.json();
+      console.log('Received data:', data); // Add this line
       if (Array.isArray(data)) {
         setRuns(data);
       } else {
