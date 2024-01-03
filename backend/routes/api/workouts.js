@@ -1,52 +1,34 @@
-// Function to make a POST request to the GPT-3.5 Turbo model
-const makeRequestToGPT3Turbo = (userInput) => {
-    return new Promise((resolve, reject) => {
-      const data = JSON.stringify({
-        prompt: userInput,
-        max_tokens: 150,
-        model: "gpt-3.5-turbo-1106", // Specify the GPT-3.5 Turbo model
-      });
+const express = require('express');
+const router = express.Router();
+const fetch = require('node-fetch');
 
-      const options = {
-        hostname: 'api.openai.com',
-        path: '/v1/engines/content-filter-alpha-003/completions', // Update the path for GPT-3.5 Turbo
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer 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`, // Replace with your OpenAI API key
-        },
-      };
+router.post('/generate', async (req, res) => {
+  try {
+    const { muscle } = req.body;
 
-      const req = https.request(options, (res) => {
-        let responseData = '';
+    // Replace 'YOUR_OPENAI_API_KEY' with your OpenAI API key
+    const apiKey = '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';
+    const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 
-        res.on('data', (chunk) => {
-          responseData += chunk;
-        });
-
-        res.on('end', () => {
-          resolve(responseData);
-        });
-      });
-
-      req.on('error', (error) => {
-        reject(error);
-      });
-
-      req.write(data);
-      req.end();
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        prompt: `Generate exercise for ${muscle}`,
+        max_tokens: 100,
+      }),
     });
-  };
 
-  // Route to handle GPT-3.5 Turbo API request
-  app.post('/api/gpt3-turbo', async (req, res) => {
-    try {
-      const { userInput } = req.body; // Assuming the user input is sent as userInput
+    const data = await response.json();
 
-      // Make a request to GPT-3.5 Turbo using the updated function
-      const response = await makeRequestToGPT3Turbo(userInput);
-      res.json(JSON.parse(response));
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  });
+    res.json({ response: data.choices[0].text });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+module.exports = router;

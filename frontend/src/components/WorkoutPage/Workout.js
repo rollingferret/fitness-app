@@ -1,51 +1,43 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './Workout.css';
 import React, { useState } from 'react';
 
 function Workout() {
-  const [userInput, setUserInput] = useState('');
-  const [output, setOutput] = useState('');
-
-  const handleInputChange = (e) => {
-    setUserInput(e.target.value);
-  };
+  const [muscle, setMuscle] = useState('');
+  const [response, setResponse] = useState('');
 
   const handleSubmit = async () => {
     try {
-        const response = await fetch('/api/gpt3-turbo', {
+      console.log('Submitting:', muscle);
+      const apiKey = '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'; // Replace with your OpenAI API key
+      const apiUrl = '/api/workouts/generate'; // Adjusted route
+
+      const result = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
         },
-        body: JSON.stringify({ userInput }),
+        body: JSON.stringify({ muscle }),
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok.');
-      }
-
-      const responseData = await response.json();
-
-      // Assuming the OpenAI response has a 'choices' property
-      setOutput(responseData.choices[0].text.trim());
+      const data = await result.json();
+      console.log('Response from server:', data);
+      setResponse(data.response);
     } catch (error) {
-      console.error('Error:', error);
+      console.error(error);
     }
   };
 
   return (
     <div>
-      <h1>OpenAI Integration</h1>
-      <textarea value={userInput} onChange={handleInputChange} />
-      <button onClick={handleSubmit}>Submit</button>
-
-      {output && (
-        <div>
-          <h2>Response:</h2>
-          <p>{output}</p>
-        </div>
-      )}
+      <h1>Fitness App - Workout Page</h1>
+      <input
+        type="text"
+        placeholder="Enter muscle"
+        value={muscle}
+        onChange={(e) => setMuscle(e.target.value)}
+      />
+      <button onClick={handleSubmit}>Generate Exercise</button>
+      {response && <div>{response}</div>}
     </div>
   );
 }

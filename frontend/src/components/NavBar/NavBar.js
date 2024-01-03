@@ -124,7 +124,7 @@ function NavBar () {
             <li onMouseOver={() => handleTabHover(3)}><Link to={'/user_profile'}>User Profile</Link>
               <ul className="drop">
                 <div>
-                <li><Link to={'/user_profile_form'}>Creat Your Profile</Link></li>
+                <li><Link to={'/user_profile_form'}>Create Your Profile</Link></li>
                 <li><Link to={'/runs/new'}>Write a Run</Link></li>
                 <li>menu3</li>
                 </div>
