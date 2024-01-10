@@ -126,7 +126,7 @@ function NavBar () {
                 <div>
                 <li><Link to={'/user_profile_form'}>Create Your Profile</Link></li>
                 <li><Link to={'/runs/new'}>Write a Run</Link></li>
-                <li>menu3</li>
+                {/* <li>menu3</li> */}
                 </div>
               </ul>
             </li>

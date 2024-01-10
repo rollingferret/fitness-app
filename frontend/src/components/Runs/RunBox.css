@@ -1,92 +1,85 @@
 #run {
-  padding: 10px;
-  border: 1px solid gray;
-  border-radius: 25px;
-  margin: 10px 0;
-  box-shadow: 5px 5px 15px rgb(143, 199, 227, 0.5);
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  margin: 15px auto; /* Center the box horizontally */
+  box-shadow: 5px 5px 15px rgba(143, 199, 227, 0.5);
   display: flex;
-  align-items: center;
-  background-color: whitesmoke;
+  flex-direction: column;
+  align-items: center; /* Center the content vertically */
+  background-color: #fff;
   font-size: 16px;
   text-align: left;
+  transition: background-color 0.3s ease;
 }
 
+
 #run:hover {
-  background-color: rgb(202, 235, 252);
+  background-color: #f0f8ff; /* Light Blue */
   cursor: pointer;
 }
 
 #run-image {
   max-width: 48px;
   max-height: 48px;
+  border-radius: 50%;
 }
 
 .user-pic-name {
   display: flex;
-  flex-direction: column;
+  align-items: center;
 }
 
 #run-container {
-  margin-left: 10px;
-  line-height: 24px;
+  margin-left: 20px;
+  line-height: 1.6;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-#run-authur {
-  color: var(--orange);
-}
-
-#run h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 10px;
+#run-author {
+  color: #261ce0;
   font-weight: bold;
 }
 
 #run-container span {
-  /* margin-top: 8px; */
-  color: #666;
-  line-height: 1.4;
-  text-align: center;
-  margin: 15px 0;
-  display: inline-block;
-  vertical-align:  middle; 
-}
-
-#run .username-label {
-  font-weight: bold;
   color: #555;
-}
-
-#run .text-label {
-  font-style: italic;
-  color: #777;
+  margin-bottom: 8px;
 }
 
 #run button,
 #run .button-container a,
 #run .button-container button,
 #run .button-container .edit-button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  background-color: blue;
-  color: white;
-}
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #1c2de8;
+    color: #fff;
+    margin-right: 10px; /* Adjust margin to match the delete button */
+  }
+
+  #run .button-container .delete-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #e81c1c;
+    color: #fff;
+    margin-right: 10px;
+  }
+
 
 #run button:hover,
 #run .button-container a:hover,
 #run .button-container button:hover,
 #run .button-container .edit-button:hover {
-  background-color: #e0e0e0;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+    background-color: #544fd9; /* Darker Tomato */
 }
 
 #run button:active,
@@ -98,151 +91,25 @@
 
 #run .button-container {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
   margin-top: 15px;
 }
 
-#run .button-container .edit-button a {
+#run .edit-button a {
   text-decoration: none;
   color: inherit;
-  display: block;
-  padding: 8px 16px;
-  border-radius: 5px;
 }
 
-#run .button-container .edit-button:hover {
-  background-color: #e0e0e0;
-  color: #333;
+#run .delete-button {
+  background-color: #ff6347; /* Tomato */
+  color: #fff;
+  margin-left: 10px;
 }
 
-#run .button-container .edit-button a:hover {
-  background-color: #e0e0e0;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-#run .button-container .edit-button:active,
-#run .button-container .edit-button a:active {
-  transform: translateY(1px);
-}
-
-#run .button-container .delete-button {
-  background-color: red;
-  color: white;
+#run .delete-button:hover {
+  background-color: #d9534f; /* Darker Tomato */
 }
 
 #run .miles-text {
-  color: green;
+  color: #008000; /* Green */
 }
-
-
-
-
-
-/* .run {
-  border: 2px solid blue;
-  border-radius: 10px;
-  margin: 0 auto 15px;
-  padding: 10px;
-  max-width: 300px;
-  background-color: #f0f0f0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-} */
-
-/* .run h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.run p {
-  margin-top: 8px;
-  color: #666;
-  line-height: 1.4;
-  text-align: center;
-}
-
-.run .username-label {
-  font-weight: bold;
-  color: #555;
-}
-
-.run .text-label {
-  font-style: italic;
-  color: #777;
-}
-
-.run button,
-.run .button-container a,
-.run .button-container button,
-.run .button-container .edit-button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  background-color: blue;
-  color: white;
-}
-
-.run button:hover,
-.run .button-container a:hover,
-.run .button-container button:hover,
-.run .button-container .edit-button:hover {
-  background-color: #e0e0e0;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.run button:active,
-.run .button-container a:active,
-.run .button-container button:active,
-.run .button-container .edit-button:active {
-  transform: translateY(1px);
-}
-
-.run .button-container {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 15px;
-}
-
-.run .button-container .edit-button a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  padding: 8px 16px;
-  border-radius: 5px;
-}
-
-.run .button-container .edit-button:hover {
-  background-color: #e0e0e0;
-  color: #333;
-}
-
-.run .button-container .edit-button a:hover {
-  background-color: #e0e0e0;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.run .button-container .edit-button:active,
-.run .button-container .edit-button a:active {
-  transform: translateY(1px);
-}
-
-.run .button-container .delete-button {
-  background-color: red;
-  color: white;
-}
-
-.run .miles-text {
-  color: green;
-} */

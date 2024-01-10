@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createUserProfile, updateUserProfile } from '../../store/session';
 
-
 const UserProfileForm = () => {
 
     // UPDATE
@@ -17,8 +16,8 @@ const UserProfileForm = () => {
 
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    
-    // switch form type 
+
+    // switch form type
     const formType = user ? "Update User Profile" : "Create User Profile";
 
     const [_id, setUserId] = useState( user ? user._id : "" );
@@ -41,23 +40,36 @@ const UserProfileForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <h2>{formType}</h2>
-            <label>Username
-                <input 
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </label>
-            <label>Email
-            <input 
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </label>
-            <input type="submit" value={formType}/>
+            <label style={{ marginRight: '8px' }}>Username</label>
+            <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                style={{ width: '150px' }}
+            />
+            <label style={{ marginLeft: '10px', marginRight: '8px' }}>Email</label>
+            <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{ width: '150px' }}
+            />
+            <input
+                type="submit"
+                value={formType}
+                style={{
+                    marginTop: '10px',
+                    marginLeft: '10px',
+                    padding: '8px 16px',
+                    backgroundColor: '#4CAF50',
+                    color: 'white',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                }}
+            />
         </form>
     )
+
 }
 
 export default UserProfileForm;

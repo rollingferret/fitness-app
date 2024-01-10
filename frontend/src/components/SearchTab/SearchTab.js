@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RunBox from '../Runs/RunBox'; // Reuse the RunBox component
+import RunBox from '../Runs/RunBox';
 import './SearchTab.css';
 
 const SearchTab = () => {
@@ -8,10 +8,10 @@ const SearchTab = () => {
 
   const handleSearch = async () => {
     try {
-      console.log('Searching for username:', username); // Add this line
+      console.log('Searching for username:', username);
       const response = await fetch(`/api/users/search/${username}`);
       const data = await response.json();
-      console.log('Received data:', data); // Add this line
+      console.log('Received data:', data);
       if (Array.isArray(data)) {
         setRuns(data);
       } else {
@@ -24,19 +24,21 @@ const SearchTab = () => {
   };
 
   return (
-    <div>
+    <div className="SearchTab">
       <input
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Search by username"
-        style={{ color: 'white' }}
+        className="SearchInput"
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} className="SearchButton">
+        Search
+      </button>
 
       <div>
-        {runs.map(run => (
-          <RunBox key={run._id} run={run} />
+        {runs.map((run) => (
+          <RunBox key={run._id} run={run} className="RunBox" />
         ))}
       </div>
     </div>

@@ -4,10 +4,10 @@ import { fetchUserRuns, clearRunErrors } from '../../store/runs';
 import RunBox from '../Runs/RunBox';
 import './Profile.css';
 
-function Profile () {
+function Profile() {
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.session.user);
-  const userRuns = useSelector(state => Object.values(state.runs.user))
+  const currentUser = useSelector((state) => state.session.user);
+  const userRuns = useSelector((state) => Object.values(state.runs.user));
 
   useEffect(() => {
     dispatch(fetchUserRuns(currentUser._id));
@@ -20,13 +20,11 @@ function Profile () {
     return (
       <>
         <h2 className="centered-heading">All of {currentUser.username}'s Runs</h2>
-        {userRuns.map(run => (
-          <RunBox
-            key={run._id}
-            run={run}
-          />
-        ))
-      }
+        <div className="runs-container"> {/* Add a container div with a class */}
+          {userRuns.map((run) => (
+            <RunBox key={run._id} run={run} />
+          ))}
+        </div>
       </>
     );
   }

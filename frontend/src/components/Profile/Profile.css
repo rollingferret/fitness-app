@@ -2,3 +2,10 @@
 .centered-heading {
     text-align: center;
   }
+
+
+  /* Profile.css */
+.runs-container {
+  max-width: 600px; /* Adjust the value based on your desired width */
+  margin: 0 auto; /* Center the container */
+}
