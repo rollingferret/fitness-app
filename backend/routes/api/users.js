@@ -9,7 +9,7 @@ const { isProduction } = require('../../config/keys');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 const { differenceInYears, parseISO } = require('date-fns');
-const Run = require('../models/Run');
+const Run = require('../../models/Run');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -111,7 +111,7 @@ router.get('/current', restoreUser, (req, res) => {
 // Calculate age
 router.get('/user/profile', async (req, res) => {
   try {
-    const userId = req.user.id; 
+    const userId = req.user.id;
     const user = await User.findById(userId);
 
     if (!user) {
@@ -119,7 +119,7 @@ router.get('/user/profile', async (req, res) => {
     }
 
     // Calculate age from DOB
-    const dob = user.dob; 
+    const dob = user.dob;
     const age = differenceInYears(new Date(), parseISO(dob));
 
     // Send user data with calculated age to the frontend
