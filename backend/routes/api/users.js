@@ -6,10 +6,11 @@ const router = express.Router();
 const passport = require('passport');
 const { loginUser, restoreUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
-const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
+const validateSignupInput = require('../../validations/signup'); // Correctly imported
 const { differenceInYears, parseISO } = require('date-fns');
 const Run = require('../../models/Run');
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -35,9 +36,8 @@ router.get('/search/:username', async (req, res, next) => {
 });
 
 
-router.post('/register', validateRegisterInput, async (req, res, next) => {
-  // Check to make sure no one has already registered with the proposed email or
-  // username.
+router.post('/register', validateSignupInput, async (req, res, next) => {
+  // Check to make sure no one has already registered with the proposed email or username.
   const user = await User.findOne({
     $or: [{ email: req.body.email }, { username: req.body.username }]
   });
@@ -70,7 +70,7 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
       try {
         newUser.hashedPassword = hashedPassword;
         const user = await newUser.save();
-        return res.json(await loginUser(user)); // <-- THIS IS THE CHANGED LINE
+        return res.json(await loginUser(user)); // <-- Correct continuation
       }
       catch(err) {
         next(err);

@@ -45,16 +45,18 @@ function SignupForm () {
     return e => setState(e.currentTarget.value);
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = {
-      email,
-      username,
-      password
-    };
-    dispatch(closeModal())
-    dispatch(signup(user));
-  }
+    const user = { email, username, password };
+  
+    // Dispatch signup action and wait for the response
+    await dispatch(signup(user));
+  
+    // Check if there are any errors after dispatching signup action
+    if (!errors || Object.keys(errors).length === 0) {
+      dispatch(closeModal()); // Close modal only if no errors
+    }
+  };
 
   return (
     <>
