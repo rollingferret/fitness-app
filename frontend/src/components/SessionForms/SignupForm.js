@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import './SessionForm.css';
-import { signup, clearSessionErrors } from '../../store/session';
+import { signup, clearSessionErrors, RECEIVE_CURRENT_USER } from '../../store/session';
 import { closeModal } from "../../store/ui";
 import './LoginForm.css';
 
@@ -47,15 +47,19 @@ function SignupForm () {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = { email, username, password };
-  
-    // Dispatch signup action and wait for the response
-    await dispatch(signup(user));
-  
-    // Check if there are any errors after dispatching signup action
-    if (!errors || Object.keys(errors).length === 0) {
-      dispatch(closeModal()); // Close modal only if no errors
+    const user = {
+      email,
+      username,
+      password
+    };
+    // Call the signup action and wait for the response
+    const action = await dispatch(signup(user));
+    
+    // Check if the signup was successful
+    if (action.type === RECEIVE_CURRENT_USER) {
+      dispatch(closeModal());
     }
+    // If not successful, do not close the modal, so the user can see the errors
   };
 
   return (
