@@ -82,7 +82,7 @@ function RunBox({ run }) {
   <div id="run">
     <div className='user-pic-name'>
       {/* <img id=" run-image" src="" alt="user-image" /> */}
-      <p id="run-authur">{author.username}</p>
+      <p id="run-author">{author.username}</p>
     </div>
     <div id="run-container">
 
