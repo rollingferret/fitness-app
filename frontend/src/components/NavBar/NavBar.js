@@ -130,7 +130,7 @@ function NavBar () {
                 </div>
               </ul>
             </li>
-            <li onMouseOver={() => handleTabHover(4)}><Link to={'/workout'}>More Workouts</Link></li>
+            {/* <li onMouseOver={() => handleTabHover(4)}><Link to={'/workout'}>More Workouts</Link></li> */}
             <li onMouseOver={() => handleTabHover(5)} onClick={logoutUser}>Logout</li>
             <li onMouseOver={() => handleTabHover(6)}><Link to={'/search'}>Search Users</Link></li>
             <div id="marker" style={{ transform: `translate(${(activeTab + 0.1) * 130 + 300}px, 0)` }}></div>
