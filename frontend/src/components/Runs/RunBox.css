@@ -44,9 +44,14 @@
 }
 
 
-#run-container span {
-  color: #555;
-  margin-bottom: 8px;
+#run-container span, 
+#run-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555; /* Consistent color */
+  font-size: 16px; /* Consistent font size */
+  margin-bottom: 8px; /* Consistent margin */
 }
 
 #run button,
