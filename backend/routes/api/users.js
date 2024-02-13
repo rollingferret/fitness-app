@@ -37,53 +37,25 @@ router.get('/search/:username', async (req, res, next) => {
 
 
 router.post('/register', validateSignupInput, async (req, res, next) => {
-  // Check to make sure no one has already registered with the proposed email or username.
-  const user = await User.findOne({
-    $or: [{ email: req.body.email }, { username: req.body.username }]
-  });
+  try {
+    const { email, username, password, gender, dob, city, state, weight, height } = req.body;
 
-  if (user) {
-    // Throw a 400 error if the email address and/or email already exists
-    const err = new Error("Validation Error");
-    err.statusCode = 400;
-    const errors = {};
-    if (user.email === req.body.email) {
-      errors.email = "A user has already registered with this email";
+    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+    if (existingUser) {
+      // Return an error if user already exists
+      return res.status(400).json({ message: "User already exists with given email or username" });
     }
-    if (user.username === req.body.username) {
-      errors.username = "A user has already registered with this username";
-    }
-    err.errors = errors;
-    return next(err);
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ username, email, hashedPassword, gender, dob, city, state, weight, height });
+
+    const savedUser = await newUser.save();
+    return res.status(201).json(savedUser);
+  } catch (err) {
+    next(err);
   }
-
-  // Otherwise create a new user
-  const newUser = new User({
-    username: req.body.username,
-    email: req.body.email,
-    gender: req.body.gender,
-    dob: req.body.dob,
-    city: req.body.city,
-    state: req.body.state,
-    weight: req.body.weight,
-    height: req.body.height
-  });
-
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) throw err;
-    bcrypt.hash(req.body.password, salt, async (err, hashedPassword) => {
-      if (err) throw err;
-      try {
-        newUser.hashedPassword = hashedPassword;
-        const user = await newUser.save();
-        return res.json(await loginUser(user)); // <-- Correct continuation
-      }
-      catch(err) {
-        next(err);
-      }
-    })
-  });
 });
+
 
 router.post('/login', validateLoginInput, async (req, res, next) => {
   passport.authenticate('local', async function(err, user) {
