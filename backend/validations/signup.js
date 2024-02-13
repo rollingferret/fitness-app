@@ -28,6 +28,34 @@ const validateSignupInput = [
     .custom((value, { req }) => value === req.body.password)
     .withMessage('Passwords do not match'),
 
+  check('gender')
+    .optional()
+    .isIn(['Male', 'Female', 'Other'])
+    .withMessage('Invalid gender value'),
+
+  check('dob')
+    .optional()
+    .isISO8601()
+    .withMessage('Invalid date of birth'),
+
+  check('city')
+    .notEmpty()
+    .withMessage('City is required'),
+
+  check('state')
+    .notEmpty()
+    .withMessage('State is required'),
+
+  check('weight')
+    .optional()
+    .isNumeric()
+    .withMessage('Weight must be a number'),
+    
+  check('height')
+    .optional()
+    .isNumeric()
+    .withMessage('Height must be a number'),
+
   handleValidationErrors
 ];
 

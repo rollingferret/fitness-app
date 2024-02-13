@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import './SessionForm.css';
 import { signup, clearSessionErrors, RECEIVE_CURRENT_USER } from '../../store/session';
 import { closeModal } from "../../store/ui";
-import './LoginForm.css';
 
 function SignupForm () {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const [gender, setGender] = useState('');
+  const [dob, setDob] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
   const errors = useSelector(state => state.errors.session);
   const modal = useSelector(state => state.ui.modal); 
   const user = useSelector(state => state.session.user);
@@ -38,6 +42,24 @@ function SignupForm () {
       case 'password2':
         setState = setPassword2;
         break;
+      case 'gender':
+        setState = setGender;
+        break;
+      case 'dob':
+        setState = setDob;
+        break;
+      case 'city':
+        setState = setCity;
+        break;
+      case 'state':
+        setState = setState;
+        break;
+      case 'weight':
+        setState = setWeight;
+        break;
+      case 'height':
+        setState = setHeight;
+        break;
       default:
         throw Error('Unknown field in Signup Form');
     }
@@ -50,16 +72,19 @@ function SignupForm () {
     const user = {
       email,
       username,
-      password
+      password,
+      gender,
+      dob,
+      city,
+      state,
+      weight,
+      height
     };
-    // Call the signup action and wait for the response
     const action = await dispatch(signup(user));
     
-    // Check if the signup was successful
     if (action.type === RECEIVE_CURRENT_USER) {
       dispatch(closeModal());
     }
-    // If not successful, do not close the modal, so the user can see the errors
   };
 
   return (
@@ -70,32 +95,43 @@ function SignupForm () {
             <form className="session-form signup-session-form" onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit}>
               <h2>Sign Up</h2>
               <div className='session-form-cussion'></div>
-              <div className="errors">{errors?.email}</div>
-              <input type="text"
-                value={email}
-                onChange={update('email')}
-                placeholder="Email"
-              />
-              <div className="errors">{errors?.username}</div>
-              <input type="text"
-                value={username}
-                onChange={update('username')}
-                placeholder="Username"
-              />
-              <div className="errors">{errors?.password}</div>
-              <input type="password"
-                value={password}
-                onChange={update('password')}
-                placeholder="Password"
-              />
-              <div className="errors">
-                {password !== password2 && 'Confirm Password field must match'}
+              
+              <div className="signup-form-container">
+                <div className="errors">{errors?.email}</div>
+                <input type="text"
+                  value={email}
+                  onChange={update('email')}
+                  placeholder="Email"
+                />
+                <div className="errors">{errors?.username}</div>
+                <input type="text"
+                  value={username}
+                  onChange={update('username')}
+                  placeholder="Username"
+                />
+                <div className="errors">{errors?.password}</div>
+                <input type="password"
+                  value={password}
+                  onChange={update('password')}
+                  placeholder="Password"
+                />
+                <div className="errors">
+                  {password !== password2 && 'Confirm Password field must match'}
+                </div>
+                <input type="password"
+                  value={password2}
+                  onChange={update('password2')}
+                  placeholder="Confirm Password"
+                />
+
+                <input type="text" value={gender} onChange={update('gender')} placeholder="Gender" />
+                <input type="date" value={dob} onChange={update('dob')} placeholder="Date of Birth" />
+                <input type="text" value={city} onChange={update('city')} placeholder="City" />
+                <input type="text" value={state} onChange={update('state')} placeholder="State" />
+                <input type="number" value={weight} onChange={update('weight')} placeholder="Weight" />
+                <input type="number" value={height} onChange={update('height')} placeholder="Height" />
               </div>
-              <input type="password"
-                value={password2}
-                onChange={update('password2')}
-                placeholder="Confirm Password"
-              />
+
               <div className='session-form-cussion2'></div>
               <button
                 type="submit"
