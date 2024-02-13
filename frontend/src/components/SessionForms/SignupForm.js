@@ -11,7 +11,7 @@ function SignupForm () {
   const [gender, setGender] = useState('');
   const [dob, setDob] = useState('');
   const [city, setCity] = useState('');
-  const [state, setState] = useState('');
+  const [geographicState, setGeographicState] = useState('');
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const errors = useSelector(state => state.errors.session);
@@ -26,46 +26,42 @@ function SignupForm () {
     };
   }, [dispatch]);
 
-  const update = field => {
-    let setState;
-
+  const update = (field) => (e) => {
     switch (field) {
       case 'email':
-        setState = setEmail;
+        setEmail(e.target.value);
         break;
       case 'username':
-        setState = setUsername;
+        setUsername(e.target.value);
         break;
       case 'password':
-        setState = setPassword;
+        setPassword(e.target.value);
         break;
       case 'password2':
-        setState = setPassword2;
+        setPassword2(e.target.value);
         break;
       case 'gender':
-        setState = setGender;
+        setGender(e.target.value);
         break;
       case 'dob':
-        setState = setDob;
+        setDob(e.target.value);
         break;
       case 'city':
-        setState = setCity;
+        setCity(e.target.value);
         break;
       case 'state':
-        setState = setState;
+        setGeographicState(e.target.value);
         break;
       case 'weight':
-        setState = setWeight;
+        setWeight(e.target.value);
         break;
       case 'height':
-        setState = setHeight;
+        setHeight(e.target.value);
         break;
       default:
         throw Error('Unknown field in Signup Form');
     }
-
-    return e => setState(e.currentTarget.value);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,7 +72,7 @@ function SignupForm () {
       gender,
       dob,
       city,
-      state,
+      state: geographicState,
       weight,
       height
     };
@@ -98,47 +94,27 @@ function SignupForm () {
               
               <div className="signup-form-container">
                 <div className="errors">{errors?.email}</div>
-                <input type="text"
-                  value={email}
-                  onChange={update('email')}
-                  placeholder="Email"
-                />
+                <input type="text" value={email} onChange={update('email')} placeholder="Email" />
                 <div className="errors">{errors?.username}</div>
-                <input type="text"
-                  value={username}
-                  onChange={update('username')}
-                  placeholder="Username"
-                />
+                <input type="text" value={username} onChange={update('username')} placeholder="Username" />
                 <div className="errors">{errors?.password}</div>
-                <input type="password"
-                  value={password}
-                  onChange={update('password')}
-                  placeholder="Password"
-                />
-                <div className="errors">
-                  {password !== password2 && 'Confirm Password field must match'}
-                </div>
-                <input type="password"
-                  value={password2}
-                  onChange={update('password2')}
-                  placeholder="Confirm Password"
-                />
-
+                <input type="password" value={password} onChange={update('password')} placeholder="Password" />
+                <div className="errors">{password !== password2 && 'Confirm Password field must match'}</div>
+                <input type="password" value={password2} onChange={update('password2')} placeholder="Confirm Password" />
                 <input type="text" value={gender} onChange={update('gender')} placeholder="Gender" />
                 <input type="date" value={dob} onChange={update('dob')} placeholder="Date of Birth" />
                 <input type="text" value={city} onChange={update('city')} placeholder="City" />
-                <input type="text" value={state} onChange={update('state')} placeholder="State" />
+                <input type="text" value={geographicState} onChange={update('state')} placeholder="State" />
                 <input type="number" value={weight} onChange={update('weight')} placeholder="Weight" />
                 <input type="number" value={height} onChange={update('height')} placeholder="Height" />
               </div>
 
               <div className='session-form-cussion2'></div>
-              <button
-                type="submit"
-                disabled={!email || !username || !password || password !== password2}
-              >
-                Sign Up
-              </button>
+              <div className='button-container'> {/* Container for the button */}
+                <button type="submit" disabled={!email || !username || !password || password !== password2}>
+                  Sign Up
+                </button>
+              </div>
             </form>
           </div>
         </div>
