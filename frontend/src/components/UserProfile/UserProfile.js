@@ -77,29 +77,28 @@ const UserProfile = () => {
             <img src={stockPortrait} alt="Stock Portrait" className="profile-image" />
           </div>
           <div className="user-details">
-            <div className="detail-item">
-              <span className="username">{user.username}</span>
-            </div>
-            <div className="detail-item">{user.email}</div>
-            <div className="detail-item">
-              <span>Male</span> {/* Add user gender */}
-            </div>
-            <div className="detail-item">
-              <span>25 years old</span> {/* Add user age */}
-            </div>
-            <div className="detail-item">
-              <span>New York, NY</span> {/* Add user location */}
-            </div>
-            <div className="detail-item">
-              <span>6' 0"</span> {/* Add user height */}
-            </div>
-            <div className="detail-item">
-              <span>180 lbs</span> {/* Add user weight */}
-            </div>
-          </div>
+  <div className="detail-item">
+    <span className="username">{user.username || 'N/A'}</span>
+  </div>
+  <div className="detail-item">{user.email || 'N/A'}</div>
+  <div className="detail-item">
+    <span>{user.gender || 'Gender: N/A'}</span>
+  </div>
+  <div className="detail-item">
+    <span>{user.age || 'Age: N/A'}</span>
+  </div>
+  <div className="detail-item">
+    <span>{(user.city && user.state) ? `${user.city}, ${user.state}` : 'Location: N/A'}</span>
+  </div>
+  <div className="detail-item">
+    <span>{user.height ? `${user.height}"` : 'Height: N/A'}</span>
+  </div>
+  <div className="detail-item">
+    <span>{user.weight ? `${user.weight} lbs` : 'Weight: N/A'}</span>
+  </div>
+</div>
         </div>
       </div>
-
       <div className="animated-background"></div>
     </>
   );

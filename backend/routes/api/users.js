@@ -119,15 +119,28 @@ router.get('/user/profile', async (req, res) => {
     }
 
     // Calculate age from DOB
-    const dob = user.dob;
-    const age = differenceInYears(new Date(), parseISO(dob));
+    const age = user.dob ? differenceInYears(new Date(), parseISO(user.dob)) : 'N/A';
 
-    // Send user data with calculated age to the frontend
-    res.json({ user: { ...user.toObject(), age } });
+    // Format user data for response
+    const userData = {
+      username: user.username || 'N/A',
+      email: user.email || 'N/A',
+      gender: user.gender || 'N/A',
+      dob: user.dob ? user.dob.toISOString().split('T')[0] : 'N/A', // Format date
+      city: user.city || 'N/A',
+      state: user.state || 'N/A',
+      weight: user.weight || 'N/A',
+      height: user.height || 'N/A',
+      age: age
+      // Add any other fields you need
+    };
+
+    res.json({ user: userData });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 module.exports = router;
