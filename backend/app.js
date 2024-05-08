@@ -78,6 +78,9 @@ const logger = require('morgan');
 const debug = require('debug');
 const cors = require('cors');
 const csurf = require('csurf');
+const db = require('./config/keys').mongoURI;
+const mongoose = require('mongoose');
+
 /* --- Need to import these to load the models into mongoose --- */
 require('./models/User');
 require('./models/Run');
@@ -88,6 +91,11 @@ const passport = require('passport');
 const { isProduction } = require('./config/keys');
 
 const app = express();
+
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => console.log(err));
 
 app.use(logger('dev')); // log request components (URL/method) to terminal
 app.use(express.json()); // parse JSON request body
