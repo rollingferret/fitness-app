@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "dotenv nodemon ./bin/www --inspect"
+    "dev": "dotenv nodemon app.js --inspect"
   },
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
